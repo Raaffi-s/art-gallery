@@ -1,10 +1,10 @@
 package com.gallery.catalog.repository;
 
 import com.gallery.catalog.model.Painting;
-import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class PaintingRepository {

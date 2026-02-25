@@ -3,9 +3,9 @@ package com.gallery.catalog.service;
 import com.gallery.catalog.dto.PaintingDto;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.repository.PaintingRepository;
-import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PaintingService {
