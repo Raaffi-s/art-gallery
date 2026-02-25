@@ -7,6 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CatalogApplication {
     public static void main(String[] args) {
         SpringApplication.run(CatalogApplication.class, args);
-        System.out.println("Галерея запущена! http://localhost:8080/api/paintings");
     }
 }
