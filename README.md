@@ -32,3 +32,5 @@ Art-Gallery — это серверное приложение, предназн
 - **База данных:** PostgreSQL (или MySQL)
 - **Сборка:** Maven
 - **Документация API:** Swagger/OpenAPI
+
+  ## Ссылка на SonarCloud:https://sonarcloud.io/project/overview?id=Raaffi-s_art-gallery
