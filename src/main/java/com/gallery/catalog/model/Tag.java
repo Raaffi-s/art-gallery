@@ -2,25 +2,14 @@ package com.gallery.catalog.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-/**
- * Entity representing a tag for categorizing paintings.
- */
 @Entity
 @Table(name = "tags")
-public class Tag {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Tag extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
@@ -30,31 +19,14 @@ public class Tag {
     @ManyToMany(mappedBy = "tags")
     private Set<Painting> paintings = new HashSet<>();
 
-    /**
-     * Default constructor.
-     */
     public Tag() {
     }
 
-    /**
-     * Constructor with name.
-     *
-     * @param name tag name
-     */
     public Tag(String name) {
         this.name = name;
     }
 
-    // ============== Getters and Setters ==============
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Геттеры и сеттеры
     public String getName() {
         return name;
     }
@@ -79,30 +51,28 @@ public class Tag {
         this.paintings = paintings;
     }
 
-    // ============== equals, hashCode, toString ==============
+    @Override
+    public String toString() {
+        return "Tag{"
+            + "id=" + getId()
+            + ", name='" + name + '\''
+            + '}';
+    }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Tag tag = (Tag) obj;
-        return Objects.equals(id, tag.id) || Objects.equals(name, tag.name);
+        Tag tag = (Tag) o;
+        return name != null ? name.equals(tag.name) : tag.name == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(name);
-    }
-
-    @Override
-    public String toString() {
-        return "Tag{"
-            + "id=" + id
-            + ", name='" + name + '\''
-            + '}';
+        return name != null ? name.hashCode() : 0;
     }
 }

@@ -1,15 +1,10 @@
 package com.gallery.catalog.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Objects;
 
-/**
- * DTO for transferring user data.
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDto {
+public class UserDto extends BaseDto {
 
-    private Long id;
     private String username;
     private String email;
     private String fullName;
@@ -18,44 +13,10 @@ public class UserDto {
     private Integer paintingsCount;
     private Integer galleriesCount;
 
-    /**
-     * Default constructor.
-     */
     public UserDto() {
     }
 
-    /**
-     * Constructor with all fields.
-     */
-    public UserDto(
-        Long id,
-        String username,
-        String email,
-        String fullName,
-        String avatarUrl,
-        String bio,
-        Integer paintingsCount,
-        Integer galleriesCount) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.fullName = fullName;
-        this.avatarUrl = avatarUrl;
-        this.bio = bio;
-        this.paintingsCount = paintingsCount;
-        this.galleriesCount = galleriesCount;
-    }
-
-    // ============== Getters and Setters ==============
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Геттеры и сеттеры
     public String getUsername() {
         return username;
     }
@@ -112,31 +73,9 @@ public class UserDto {
         this.galleriesCount = galleriesCount;
     }
 
-    // ============== equals, hashCode, toString ==============
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        UserDto userDto = (UserDto) obj;
-        return Objects.equals(id, userDto.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
     @Override
     public String toString() {
-        return "UserDto{"
-            + "id=" + id
-            + ", username='" + username + '\''
-            + ", email='" + email + '\''
-            + '}';
+        return "UserDto{" + "id=" + id + ", username='" + username + '\'' + ", email='" + email
+            + '\'' + '}';
     }
 }

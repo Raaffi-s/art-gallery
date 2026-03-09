@@ -4,9 +4,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -15,19 +12,11 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-/**
- * Entity representing a painting in the gallery.
- */
 @Entity
 @Table(name = "paintings")
-public class Painting {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Painting extends BaseEntity {
 
     @Column(nullable = false)
     private String title;
@@ -39,16 +28,9 @@ public class Painting {
     private String artist;
 
     private Integer year;
-
     private Double price;
-
-    @Column(name = "image_url")
     private String imageUrl;
-
     private String technique;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -66,41 +48,20 @@ public class Painting {
     )
     private Set<Tag> tags = new HashSet<>();
 
-    /**
-     * Default constructor.
-     */
     public Painting() {
     }
 
-    /**
-     * Constructor with required fields.
-     *
-     * @param title  painting title
-     * @param artist artist name
-     */
     public Painting(String title, String artist) {
         this.title = title;
         this.artist = artist;
     }
 
-    /**
-     * Sets creation timestamp before persisting.
-     */
     @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
+    public void onCreate() {
+        setCreatedAt(LocalDateTime.now());
     }
 
-    // ============== Getters and Setters ==============
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Геттеры и сеттеры
     public String getTitle() {
         return title;
     }
@@ -157,14 +118,6 @@ public class Painting {
         this.technique = technique;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public User getUser() {
         return user;
     }
@@ -187,25 +140,6 @@ public class Painting {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
-    }
-
-    // ============== equals, hashCode, toString ==============
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        Painting painting = (Painting) obj;
-        return Objects.equals(id, painting.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 
     @Override

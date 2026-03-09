@@ -1,16 +1,11 @@
 package com.gallery.catalog.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.Objects;
 import java.util.Set;
 
-/**
- * DTO for transferring painting data.
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PaintingDto {
+public class PaintingDto extends BaseDto {
 
-    private Long id;
     private String title;
     private String description;
     private String artist;
@@ -22,50 +17,10 @@ public class PaintingDto {
     private String galleryName;
     private Set<String> tagNames;
 
-    /**
-     * Default constructor.
-     */
     public PaintingDto() {
     }
 
-    /**
-     * Constructor with all fields.
-     */
-    public PaintingDto(
-        Long id,
-        String title,
-        String description,
-        String artist,
-        Integer year,
-        Double price,
-        String imageUrl,
-        String technique,
-        String userName,
-        String galleryName,
-        Set<String> tagNames) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.artist = artist;
-        this.year = year;
-        this.price = price;
-        this.imageUrl = imageUrl;
-        this.technique = technique;
-        this.userName = userName;
-        this.galleryName = galleryName;
-        this.tagNames = tagNames;
-    }
-
-    // ============== Getters and Setters ==============
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Геттеры и сеттеры
     public String getTitle() {
         return title;
     }
@@ -144,25 +99,6 @@ public class PaintingDto {
 
     public void setTagNames(Set<String> tagNames) {
         this.tagNames = tagNames;
-    }
-
-    // ============== equals, hashCode, toString ==============
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        PaintingDto that = (PaintingDto) obj;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
     }
 
     @Override
