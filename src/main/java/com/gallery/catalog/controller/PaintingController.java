@@ -3,8 +3,14 @@ package com.gallery.catalog.controller;
 import com.gallery.catalog.dto.PaintingDto;
 import com.gallery.catalog.service.PaintingService;
 import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,24 +18,48 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/paintings")
 public class PaintingController {
-    private final PaintingService service;
 
-    public PaintingController(PaintingService service) {
-        this.service = service;
+    private final PaintingService paintingService;
+
+    public PaintingController(PaintingService paintingService) {
+        this.paintingService = paintingService;
     }
 
-    // GET с RequestParam: /api/paintings?artist=Ван Гог
+    // GET с Query Param: /api/paintings?artist=Ван Гог
     @GetMapping
-    public List<PaintingDto> getPaintings(@RequestParam(required = false) String artist) {
+    public ResponseEntity<List<PaintingDto>> getPaintings(
+        @RequestParam(required = false) String artist) {
         if (artist != null && !artist.isEmpty()) {
-            return service.getPaintingsByArtist(artist);
+            return ResponseEntity.ok(paintingService.getPaintingsByArtist(artist));
         }
-        return service.getAllPaintings();
+        return ResponseEntity.ok(paintingService.getAllPaintings());
     }
 
-    // GET с PathVariable: /api/paintings/1
+    // GET с Path Variable: /api/paintings/1
     @GetMapping("/{id}")
-    public PaintingDto getPaintingById(@PathVariable Long id) {
-        return service.getPaintingById(id);
+    public ResponseEntity<PaintingDto> getPaintingById(@PathVariable Long id) {
+        return ResponseEntity.ok(paintingService.getPaintingById(id));
+    }
+
+    // ✅ НОВЫЙ МЕТОД: POST - создание картины
+    @PostMapping
+    public ResponseEntity<PaintingDto> createPainting(@RequestBody PaintingDto dto) {
+        PaintingDto created = paintingService.createPainting(dto);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+
+    // PUT - обновление
+    @PutMapping("/{id}")
+    public ResponseEntity<PaintingDto> updatePainting(
+        @PathVariable Long id,
+        @RequestBody PaintingDto dto) {
+        return ResponseEntity.ok(paintingService.updatePainting(id, dto));
+    }
+
+    // DELETE - удаление
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePainting(@PathVariable Long id) {
+        paintingService.deletePainting(id);
+        return ResponseEntity.noContent().build();
     }
 }

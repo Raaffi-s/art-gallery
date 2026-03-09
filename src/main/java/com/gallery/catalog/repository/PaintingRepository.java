@@ -1,48 +1,33 @@
 package com.gallery.catalog.repository;
 
 import com.gallery.catalog.model.Painting;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PaintingRepository {
-    private final ConcurrentHashMap<Long, Painting> paintings = new ConcurrentHashMap<>();
-    private Long nextId = 1L;
+public interface PaintingRepository extends JpaRepository<Painting, Long> {
 
-    public PaintingRepository() {
-        // Добавляем тестовые данные
-        save(new Painting(null, "Звездная ночь", "Ван Гог", 1889, 1000000.0));
-        save(new Painting(null, "Мона Лиза", "Леонардо да Винчи", 1503, 8700000.0));
-        save(new Painting(null, "Крик", "Мунк", 1893, 1200000.0));
-        save(new Painting(null, "Подсолнухи", "Ван Гог", 1888, 8500000.0));
-        save(new Painting(null, "Тайная вечеря", "Леонардо да Винчи", 1498, 9500000.0));
-    }
+    List<Painting> findByArtistContainingIgnoreCase(String artist);
 
-    public List<Painting> findAll() {
-        return new ArrayList<>(paintings.values());
-    }
+    List<Painting> findByTitleContainingIgnoreCase(String title);
 
-    public Painting findById(Long id) {
-        return paintings.get(id);
-    }
+    List<Painting> findByYearBetween(Integer startYear, Integer endYear);
 
-    public List<Painting> findByArtist(String artist) {
-        List<Painting> result = new ArrayList<>();
-        for (Painting p : paintings.values()) {
-            if (p.getArtist().toLowerCase().contains(artist.toLowerCase())) {
-                result.add(p);
-            }
-        }
-        return result;
-    }
+    @EntityGraph(attributePaths = {"user", "gallery", "tags"})
+    List<Painting> findAllByOrderByCreatedAtDesc();
 
-    public Painting save(Painting painting) {
-        if (painting.getId() == null) {
-            painting.setId(nextId++);
-        }
-        paintings.put(painting.getId(), painting);
-        return painting;
-    }
+    @Query("SELECT DISTINCT p FROM Painting p "
+        + "LEFT JOIN FETCH p.user "
+        + "LEFT JOIN FETCH p.gallery "
+        + "LEFT JOIN FETCH p.tags "
+        + "WHERE LOWER(p.artist) LIKE LOWER(CONCAT('%', :artist, '%'))")
+    List<Painting> findByArtistWithDetails(@Param("artist") String artist);
+
+    @EntityGraph(attributePaths = {"user", "gallery", "tags"})
+    Optional<Painting> findWithDetailsById(Long id);
 }
