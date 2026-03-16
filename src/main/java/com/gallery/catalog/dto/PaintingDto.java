@@ -6,6 +6,9 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaintingDto extends BaseDto {
 
+    private static final int MAX_TITLE_LENGTH = 255;
+    private static final int MAX_DESCRIPTION_LENGTH = 1000;
+
     private String title;
     private String description;
     private String artist;
@@ -20,12 +23,14 @@ public class PaintingDto extends BaseDto {
     public PaintingDto() {
     }
 
-    // Геттеры и сеттеры
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
+        if (title != null && title.length() > MAX_TITLE_LENGTH) {
+            throw new IllegalArgumentException("Title too long");
+        }
         this.title = title;
     }
 
@@ -34,6 +39,9 @@ public class PaintingDto extends BaseDto {
     }
 
     public void setDescription(String description) {
+        if (description != null && description.length() > MAX_DESCRIPTION_LENGTH) {
+            throw new IllegalArgumentException("Description too long");
+        }
         this.description = description;
     }
 
@@ -103,10 +111,7 @@ public class PaintingDto extends BaseDto {
 
     @Override
     public String toString() {
-        return "PaintingDto{"
-            + "id=" + id
-            + ", title='" + title + '\''
-            + ", artist='" + artist + '\''
-            + '}';
+        return String.format("PaintingDto{id=%d, title='%s', artist='%s', year=%d}",
+            getId(), title, artist, year);
     }
 }

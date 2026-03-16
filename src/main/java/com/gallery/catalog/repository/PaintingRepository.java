@@ -14,10 +14,6 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
 
     List<Painting> findByArtistContainingIgnoreCase(String artist);
 
-    List<Painting> findByTitleContainingIgnoreCase(String title);
-
-    List<Painting> findByYearBetween(Integer startYear, Integer endYear);
-
     @EntityGraph(attributePaths = {"user", "gallery", "tags"})
     List<Painting> findAllByOrderByCreatedAtDesc();
 
