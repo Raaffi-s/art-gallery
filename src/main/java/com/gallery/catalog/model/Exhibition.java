@@ -6,7 +6,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -49,10 +48,6 @@ public class Exhibition extends BaseEntity {
         this.title = title;
     }
 
-    @PrePersist
-    public void onCreate() {
-        setCreatedAt(LocalDateTime.now());
-    }
 
     public String getTitle() {
         return title;

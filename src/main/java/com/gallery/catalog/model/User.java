@@ -4,9 +4,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +39,6 @@ public class User extends BaseEntity {
     public User(String username, String email) {
         this.username = username;
         this.email = email;
-    }
-
-    @PrePersist
-    public void onCreate() {
-        setCreatedAt(LocalDateTime.now());
     }
 
     // Геттеры и сеттеры

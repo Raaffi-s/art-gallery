@@ -8,9 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,11 +52,6 @@ public class Painting extends BaseEntity {
     public Painting(String title, String artist) {
         this.title = title;
         this.artist = artist;
-    }
-
-    @PrePersist
-    public void onCreate() {
-        setCreatedAt(LocalDateTime.now());
     }
 
     // Геттеры и сеттеры
