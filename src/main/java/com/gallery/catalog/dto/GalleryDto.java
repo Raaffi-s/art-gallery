@@ -10,9 +10,6 @@ public class GalleryDto extends BaseDto {
     private String ownerName;
     private Integer paintingsCount;
 
-    public GalleryDto() {
-    }
-
     // Геттеры и сеттеры
     public String getName() {
         return name;

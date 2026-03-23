@@ -13,8 +13,6 @@ public class UserDto extends BaseDto {
     private Integer paintingsCount;
     private Integer galleriesCount;
 
-    public UserDto() {
-    }
 
     // Геттеры и сеттеры
     public String getUsername() {

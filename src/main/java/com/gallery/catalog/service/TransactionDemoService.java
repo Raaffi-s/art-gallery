@@ -1,5 +1,6 @@
 package com.gallery.catalog.service;
 
+import com.gallery.catalog.exception.TransactionDemoException;
 import com.gallery.catalog.model.Gallery;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.User;
@@ -36,7 +37,7 @@ public class TransactionDemoService {
         Gallery gallery = createGallery(user);
         createPainting(user, gallery);
 
-        throw new RuntimeException("Simulated error - transaction rolling back all data");
+        throw new TransactionDemoException("Simulated error - transaction rolling back all data");
     }
 
     public void createGalleryWithoutTransaction() {
@@ -44,7 +45,7 @@ public class TransactionDemoService {
         Gallery gallery = createGallery(user);
         createPainting(user, gallery);
 
-        throw new RuntimeException("Simulated error - data already saved in database!");
+        throw new TransactionDemoException("Simulated error - data already saved in database!");
     }
 
     private User createUser() {

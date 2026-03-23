@@ -11,7 +11,7 @@ public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;  // ИЗМЕНИЛИ С private НА protected!
+    protected Long id;
 
     protected LocalDateTime createdAt;  // ТОЖЕ ИЗМЕНИЛИ
 

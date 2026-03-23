@@ -79,7 +79,6 @@ public class PaintingService {
             .toList();
     }
 
-    // ИСПРАВЛЕНО: getPaintingsWithNplus1Problem вместо getPaintingsWithNPlus1Problem
     public List<PaintingDto> getPaintingsWithNplus1Problem() {
         return paintingRepository.findAll()
             .stream()
@@ -132,11 +131,11 @@ public class PaintingService {
         if (dto.getArtist() == null || dto.getArtist().trim().isEmpty()) {
             throw new IllegalArgumentException("Artist is required");
         }
-        if (dto.getYear() != null) {
-            if (dto.getYear() < MIN_YEAR || dto.getYear() > CURRENT_YEAR) {
-                throw new IllegalArgumentException(
-                    "Year must be between " + MIN_YEAR + " and " + CURRENT_YEAR);
-            }
+        if (dto.getYear() != null
+            && (dto.getYear() < MIN_YEAR || dto.getYear() > CURRENT_YEAR)) {
+
+            throw new IllegalArgumentException(
+                "Year must be between " + MIN_YEAR + " and " + CURRENT_YEAR);
         }
     }
 

@@ -20,9 +20,6 @@ public class PaintingDto extends BaseDto {
     private String galleryName;
     private Set<String> tagNames;
 
-    public PaintingDto() {
-    }
-
     public String getTitle() {
         return title;
     }

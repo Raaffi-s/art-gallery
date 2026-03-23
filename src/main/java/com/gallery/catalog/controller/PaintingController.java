@@ -25,7 +25,6 @@ public class PaintingController {
         this.paintingService = paintingService;
     }
 
-    // GET с Query Param: /api/paintings?artist=Ван Гог
     @GetMapping
     public ResponseEntity<List<PaintingDto>> getPaintings(
         @RequestParam(required = false) String artist) {
@@ -35,20 +34,17 @@ public class PaintingController {
         return ResponseEntity.ok(paintingService.getAllPaintings());
     }
 
-    // GET с Path Variable: /api/paintings/1
     @GetMapping("/{id}")
     public ResponseEntity<PaintingDto> getPaintingById(@PathVariable Long id) {
         return ResponseEntity.ok(paintingService.getPaintingById(id));
     }
 
-    // ✅ НОВЫЙ МЕТОД: POST - создание картины
     @PostMapping
     public ResponseEntity<PaintingDto> createPainting(@RequestBody PaintingDto dto) {
         PaintingDto created = paintingService.createPainting(dto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    // PUT - обновление
     @PutMapping("/{id}")
     public ResponseEntity<PaintingDto> updatePainting(
         @PathVariable Long id,
@@ -56,7 +52,6 @@ public class PaintingController {
         return ResponseEntity.ok(paintingService.updatePainting(id, dto));
     }
 
-    // DELETE - удаление
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePainting(@PathVariable Long id) {
         paintingService.deletePainting(id);

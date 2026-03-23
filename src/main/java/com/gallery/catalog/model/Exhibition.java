@@ -2,6 +2,7 @@ package com.gallery.catalog.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -27,9 +28,18 @@ public class Exhibition extends BaseEntity {
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
-    @ManyToMany
-    @JoinTable(name = "exhibition_paintings", joinColumns = @JoinColumn(name = "exhibition_id"),
-        inverseJoinColumns = @JoinColumn(name = "painting_id"))
+    /**
+     * FetchType.LAZY — выбран намеренно: при загрузке выставки нам не всегда нужен
+     * весь список картин. Lazy позволяет избежать лишних JOIN-запросов.
+     * Каскад не указан (по умолчанию нет), т.к. Exhibition не является владельцем
+     * жизненного цикла картин — удаление выставки не должно удалять картины.
+     */
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "exhibition_paintings",
+        joinColumns = @JoinColumn(name = "exhibition_id"),
+        inverseJoinColumns = @JoinColumn(name = "painting_id")
+    )
     private Set<Painting> paintings = new HashSet<>();
 
     public Exhibition() {
@@ -44,7 +54,6 @@ public class Exhibition extends BaseEntity {
         setCreatedAt(LocalDateTime.now());
     }
 
-    // Геттеры и сеттеры
     public String getTitle() {
         return title;
     }
@@ -87,7 +96,11 @@ public class Exhibition extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Exhibition{" + "id=" + getId() + ", title='" + title + '\'' + ", startDate="
-            + startDate + ", endDate=" + endDate + '}';
+        return "Exhibition{"
+            + "id=" + getId()
+            + ", title='" + title + '\''
+            + ", startDate=" + startDate
+            + ", endDate=" + endDate
+            + '}';
     }
 }
