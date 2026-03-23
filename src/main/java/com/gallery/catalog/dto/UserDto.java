@@ -2,6 +2,7 @@ package com.gallery.catalog.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+@SuppressWarnings("java:S1192")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto extends BaseDto {
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@SuppressWarnings("java:S1192")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExhibitionDto extends BaseDto {
 
