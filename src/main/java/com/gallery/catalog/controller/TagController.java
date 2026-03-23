@@ -41,8 +41,7 @@ public class TagController {
 
     @PostMapping
     public ResponseEntity<TagDto> createTag(@RequestBody TagDto dto) {
-        TagDto created = tagService.createTag(dto);
-        return new ResponseEntity<>(created, HttpStatus.CREATED);
+        return new ResponseEntity<>(tagService.createTag(dto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

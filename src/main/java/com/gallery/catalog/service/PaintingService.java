@@ -9,6 +9,7 @@ import com.gallery.catalog.model.User;
 import com.gallery.catalog.repository.PaintingRepository;
 import com.gallery.catalog.repository.UserRepository;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,31 +30,26 @@ public class PaintingService {
     }
 
     private PaintingDto convertToDto(Painting painting) {
-        PaintingDto dto = new PaintingDto();
-        dto.setId(painting.getId());
-        dto.setTitle(painting.getTitle());
-        dto.setDescription(painting.getDescription());
-        dto.setArtist(painting.getArtist());
-        dto.setYear(painting.getYear());
-        dto.setPrice(painting.getPrice());
-        dto.setImageUrl(painting.getImageUrl());
-        dto.setTechnique(painting.getTechnique());
-
-        if (painting.getUser() != null) {
-            dto.setUserName(painting.getUser().getUsername());
-        }
-
-        if (painting.getGallery() != null) {
-            dto.setGalleryName(painting.getGallery().getName());
-        }
-
+        Set<String> tagNames = null;
         if (painting.getTags() != null && !painting.getTags().isEmpty()) {
-            dto.setTagNames(painting.getTags().stream()
+            tagNames = painting.getTags().stream()
                 .map(Tag::getName)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toSet());
         }
 
-        return dto;
+        return new PaintingDto(
+            painting.getId(),
+            painting.getTitle(),
+            painting.getDescription(),
+            painting.getArtist(),
+            painting.getYear(),
+            painting.getPrice(),
+            painting.getImageUrl(),
+            painting.getTechnique(),
+            painting.getUser() != null ? painting.getUser().getUsername() : null,
+            painting.getGallery() != null ? painting.getGallery().getName() : null,
+            tagNames
+        );
     }
 
     public List<PaintingDto> getAllPaintings() {
@@ -93,14 +89,13 @@ public class PaintingService {
         Painting painting = new Painting();
         updatePaintingFromDto(painting, dto);
 
-        if (dto.getUserName() != null && !dto.getUserName().trim().isEmpty()) {
-            User user = userRepository.findByUsername(dto.getUserName().trim())
-                .orElseThrow(() -> new UserNotFoundException(dto.getUserName()));
+        if (dto.userName() != null && !dto.userName().trim().isEmpty()) {
+            User user = userRepository.findByUsername(dto.userName().trim())
+                .orElseThrow(() -> new UserNotFoundException(dto.userName()));
             painting.setUser(user);
         }
 
-        Painting saved = paintingRepository.save(painting);
-        return convertToDto(saved);
+        return convertToDto(paintingRepository.save(painting));
     }
 
     @Transactional
@@ -112,8 +107,7 @@ public class PaintingService {
 
         updatePaintingFromDto(painting, dto);
 
-        Painting updated = paintingRepository.save(painting);
-        return convertToDto(updated);
+        return convertToDto(paintingRepository.save(painting));
     }
 
     @Transactional
@@ -125,27 +119,25 @@ public class PaintingService {
     }
 
     private void validatePaintingDto(PaintingDto dto) {
-        if (dto.getTitle() == null || dto.getTitle().trim().isEmpty()) {
+        if (dto.title() == null || dto.title().trim().isEmpty()) {
             throw new IllegalArgumentException("Title is required");
         }
-        if (dto.getArtist() == null || dto.getArtist().trim().isEmpty()) {
+        if (dto.artist() == null || dto.artist().trim().isEmpty()) {
             throw new IllegalArgumentException("Artist is required");
         }
-        if (dto.getYear() != null
-            && (dto.getYear() < MIN_YEAR || dto.getYear() > CURRENT_YEAR)) {
-
+        if (dto.year() != null && (dto.year() < MIN_YEAR || dto.year() > CURRENT_YEAR)) {
             throw new IllegalArgumentException(
                 "Year must be between " + MIN_YEAR + " and " + CURRENT_YEAR);
         }
     }
 
     private void updatePaintingFromDto(Painting painting, PaintingDto dto) {
-        painting.setTitle(dto.getTitle().trim());
-        painting.setDescription(dto.getDescription() != null ? dto.getDescription().trim() : null);
-        painting.setArtist(dto.getArtist().trim());
-        painting.setYear(dto.getYear());
-        painting.setPrice(dto.getPrice());
-        painting.setImageUrl(dto.getImageUrl());
-        painting.setTechnique(dto.getTechnique());
+        painting.setTitle(dto.title().trim());
+        painting.setDescription(dto.description() != null ? dto.description().trim() : null);
+        painting.setArtist(dto.artist().trim());
+        painting.setYear(dto.year());
+        painting.setPrice(dto.price());
+        painting.setImageUrl(dto.imageUrl());
+        painting.setTechnique(dto.technique());
     }
 }

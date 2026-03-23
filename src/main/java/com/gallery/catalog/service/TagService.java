@@ -18,11 +18,11 @@ public class TagService {
     }
 
     private TagDto convertToDto(Tag tag) {
-        TagDto dto = new TagDto();
-        dto.setId(tag.getId());
-        dto.setName(tag.getName());
-        dto.setDescription(tag.getDescription());
-        return dto;
+        return new TagDto(
+            tag.getId(),
+            tag.getName(),
+            tag.getDescription()
+        );
     }
 
     @Transactional(readOnly = true)
@@ -46,31 +46,31 @@ public class TagService {
 
     @Transactional
     public TagDto createTag(TagDto dto) {
-        if (dto.getName() == null || dto.getName().trim().isEmpty()) {
+        if (dto.name() == null || dto.name().trim().isEmpty()) {
             throw new IllegalArgumentException("Tag name is required");
         }
 
-        tagRepository.findByName(dto.getName().trim()).ifPresent(existing -> {
-            throw new IllegalArgumentException("Tag already exists: " + dto.getName());
+        tagRepository.findByName(dto.name().trim()).ifPresent(existing -> {
+            throw new IllegalArgumentException("Tag already exists: " + dto.name());
         });
 
         Tag tag = new Tag();
-        tag.setName(dto.getName().trim());
-        tag.setDescription(dto.getDescription());
+        tag.setName(dto.name().trim());
+        tag.setDescription(dto.description());
         return convertToDto(tagRepository.save(tag));
     }
 
     @Transactional
     public TagDto updateTag(Long id, TagDto dto) {
-        if (dto.getName() == null || dto.getName().trim().isEmpty()) {
+        if (dto.name() == null || dto.name().trim().isEmpty()) {
             throw new IllegalArgumentException("Tag name is required");
         }
 
         Tag tag = tagRepository.findById(id)
             .orElseThrow(() -> new TagNotFoundException(id.toString()));
 
-        tag.setName(dto.getName().trim());
-        tag.setDescription(dto.getDescription());
+        tag.setName(dto.name().trim());
+        tag.setDescription(dto.description());
         return convertToDto(tagRepository.save(tag));
     }
 

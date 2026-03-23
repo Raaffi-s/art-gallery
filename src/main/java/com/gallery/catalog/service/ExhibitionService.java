@@ -1,6 +1,7 @@
 package com.gallery.catalog.service;
 
 import com.gallery.catalog.dto.ExhibitionDto;
+import com.gallery.catalog.exception.ExhibitionNotFoundException;
 import com.gallery.catalog.model.Exhibition;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.repository.ExhibitionRepository;
@@ -13,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ExhibitionService {
-    private String exhibitionNotFound = "Exhibition not found";
 
     private final ExhibitionRepository exhibitionRepository;
     private final PaintingRepository paintingRepository;
@@ -25,21 +25,25 @@ public class ExhibitionService {
     }
 
     private ExhibitionDto convertToDto(Exhibition exhibition) {
-        ExhibitionDto dto = new ExhibitionDto();
-        dto.setId(exhibition.getId());
-        dto.setTitle(exhibition.getTitle());
-        dto.setDescription(exhibition.getDescription());
-        dto.setStartDate(exhibition.getStartDate());
-        dto.setEndDate(exhibition.getEndDate());
+        Set<String> paintingTitles = null;
+        Integer paintingsCount = null;
 
         if (exhibition.getPaintings() != null && !exhibition.getPaintings().isEmpty()) {
-            dto.setPaintingTitles(exhibition.getPaintings().stream()
+            paintingTitles = exhibition.getPaintings().stream()
                 .map(Painting::getTitle)
-                .collect(Collectors.toSet()));
-            dto.setPaintingsCount(exhibition.getPaintings().size());
+                .collect(Collectors.toSet());
+            paintingsCount = exhibition.getPaintings().size();
         }
 
-        return dto;
+        return new ExhibitionDto(
+            exhibition.getId(),
+            exhibition.getTitle(),
+            exhibition.getDescription(),
+            exhibition.getStartDate(),
+            exhibition.getEndDate(),
+            paintingTitles,
+            paintingsCount
+        );
     }
 
     @Transactional(readOnly = true)
@@ -53,7 +57,7 @@ public class ExhibitionService {
     @Transactional(readOnly = true)
     public ExhibitionDto getExhibitionById(Long id) {
         Exhibition exhibition = exhibitionRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException(exhibitionNotFound + id));
+            .orElseThrow(() -> new ExhibitionNotFoundException(id.toString()));
         return convertToDto(exhibition);
     }
 
@@ -64,8 +68,8 @@ public class ExhibitionService {
         Exhibition exhibition = new Exhibition();
         updateExhibitionFromDto(exhibition, dto);
 
-        if (dto.getPaintingTitles() != null && !dto.getPaintingTitles().isEmpty()) {
-            Set<Painting> paintings = dto.getPaintingTitles().stream()
+        if (dto.paintingTitles() != null && !dto.paintingTitles().isEmpty()) {
+            Set<Painting> paintings = dto.paintingTitles().stream()
                 .map(title -> paintingRepository.findAll().stream()
                     .filter(p -> p.getTitle().equalsIgnoreCase(title))
                     .findFirst()
@@ -75,8 +79,7 @@ public class ExhibitionService {
             exhibition.setPaintings(paintings);
         }
 
-        Exhibition saved = exhibitionRepository.save(exhibition);
-        return convertToDto(saved);
+        return convertToDto(exhibitionRepository.save(exhibition));
     }
 
     @Transactional
@@ -84,18 +87,17 @@ public class ExhibitionService {
         validateExhibitionDto(dto);
 
         Exhibition exhibition = exhibitionRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException(exhibitionNotFound + id));
+            .orElseThrow(() -> new ExhibitionNotFoundException(id.toString()));
 
         updateExhibitionFromDto(exhibition, dto);
 
-        Exhibition updated = exhibitionRepository.save(exhibition);
-        return convertToDto(updated);
+        return convertToDto(exhibitionRepository.save(exhibition));
     }
 
     @Transactional
     public void deleteExhibition(Long id) {
         if (!exhibitionRepository.existsById(id)) {
-            throw new IllegalArgumentException(exhibitionNotFound + id);
+            throw new ExhibitionNotFoundException(id.toString());
         }
         exhibitionRepository.deleteById(id);
     }
@@ -103,44 +105,40 @@ public class ExhibitionService {
     @Transactional
     public ExhibitionDto addPaintingToExhibition(Long exhibitionId, Long paintingId) {
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
-            .orElseThrow(() -> new IllegalArgumentException(
-                "Exhibition not found: " + exhibitionId));
+            .orElseThrow(() -> new ExhibitionNotFoundException(exhibitionId.toString()));
 
         Painting painting = paintingRepository.findById(paintingId)
             .orElseThrow(() -> new IllegalArgumentException(
-                "Painting not found: " + paintingId));
+                "Painting not found with id: " + paintingId));
 
         exhibition.getPaintings().add(painting);
-        Exhibition updated = exhibitionRepository.save(exhibition);
-        return convertToDto(updated);
+        return convertToDto(exhibitionRepository.save(exhibition));
     }
 
     @Transactional
     public ExhibitionDto removePaintingFromExhibition(Long exhibitionId, Long paintingId) {
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
-            .orElseThrow(() -> new IllegalArgumentException(
-                "Exhibition not found: " + exhibitionId));
+            .orElseThrow(() -> new ExhibitionNotFoundException(exhibitionId.toString()));
 
         exhibition.getPaintings().removeIf(p -> p.getId().equals(paintingId));
-        Exhibition updated = exhibitionRepository.save(exhibition);
-        return convertToDto(updated);
+        return convertToDto(exhibitionRepository.save(exhibition));
     }
 
     private void validateExhibitionDto(ExhibitionDto dto) {
-        if (dto.getTitle() == null || dto.getTitle().trim().isEmpty()) {
+        if (dto.title() == null || dto.title().trim().isEmpty()) {
             throw new IllegalArgumentException("Title is required");
         }
-        if (dto.getStartDate() != null && dto.getEndDate() != null
-            && dto.getEndDate().isBefore(dto.getStartDate())) {
+        if (dto.startDate() != null && dto.endDate() != null
+            && dto.endDate().isBefore(dto.startDate())) {
             throw new IllegalArgumentException("End date must be after start date");
         }
     }
 
     private void updateExhibitionFromDto(Exhibition exhibition, ExhibitionDto dto) {
-        exhibition.setTitle(dto.getTitle().trim());
+        exhibition.setTitle(dto.title().trim());
         exhibition.setDescription(
-            dto.getDescription() != null ? dto.getDescription().trim() : null);
-        exhibition.setStartDate(dto.getStartDate());
-        exhibition.setEndDate(dto.getEndDate());
+            dto.description() != null ? dto.description().trim() : null);
+        exhibition.setStartDate(dto.startDate());
+        exhibition.setEndDate(dto.endDate());
     }
 }

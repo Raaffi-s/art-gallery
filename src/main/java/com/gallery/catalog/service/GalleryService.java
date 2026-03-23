@@ -22,20 +22,13 @@ public class GalleryService {
     }
 
     private GalleryDto convertToDto(Gallery gallery) {
-        GalleryDto dto = new GalleryDto();
-        dto.setId(gallery.getId());
-        dto.setName(gallery.getName());
-        dto.setDescription(gallery.getDescription());
-
-        if (gallery.getOwner() != null) {
-            dto.setOwnerName(gallery.getOwner().getUsername());
-        }
-
-        if (gallery.getPaintings() != null) {
-            dto.setPaintingsCount(gallery.getPaintings().size());
-        }
-
-        return dto;
+        return new GalleryDto(
+            gallery.getId(),
+            gallery.getName(),
+            gallery.getDescription(),
+            gallery.getOwner() != null ? gallery.getOwner().getUsername() : null,
+            gallery.getPaintings() != null ? gallery.getPaintings().size() : null
+        );
     }
 
     @Transactional(readOnly = true)
@@ -65,14 +58,14 @@ public class GalleryService {
     public GalleryDto createGallery(GalleryDto dto) {
         validateGalleryDto(dto);
 
-        User owner = userRepository.findByUsername(dto.getOwnerName().trim())
+        User owner = userRepository.findByUsername(dto.ownerName().trim())
             .orElseThrow(() -> new IllegalArgumentException(
-                "User not found: " + dto.getOwnerName()));
+                "User not found: " + dto.ownerName()));
 
         Gallery gallery = new Gallery();
-        gallery.setName(dto.getName().trim());
+        gallery.setName(dto.name().trim());
         gallery.setDescription(
-            dto.getDescription() != null ? dto.getDescription().trim() : null);
+            dto.description() != null ? dto.description().trim() : null);
         gallery.setOwner(owner);
 
         Gallery saved = galleryRepository.save(gallery);
@@ -86,14 +79,14 @@ public class GalleryService {
         Gallery gallery = galleryRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Gallery not found: " + id));
 
-        gallery.setName(dto.getName().trim());
+        gallery.setName(dto.name().trim());
         gallery.setDescription(
-            dto.getDescription() != null ? dto.getDescription().trim() : null);
+            dto.description() != null ? dto.description().trim() : null);
 
-        if (dto.getOwnerName() != null && !dto.getOwnerName().trim().isEmpty()) {
-            User owner = userRepository.findByUsername(dto.getOwnerName().trim())
+        if (dto.ownerName() != null && !dto.ownerName().trim().isEmpty()) {
+            User owner = userRepository.findByUsername(dto.ownerName().trim())
                 .orElseThrow(() -> new IllegalArgumentException(
-                    "User not found: " + dto.getOwnerName()));
+                    "User not found: " + dto.ownerName()));
             gallery.setOwner(owner);
         }
 
@@ -110,10 +103,10 @@ public class GalleryService {
     }
 
     private void validateGalleryDto(GalleryDto dto) {
-        if (dto.getName() == null || dto.getName().trim().isEmpty()) {
+        if (dto.name() == null || dto.name().trim().isEmpty()) {
             throw new IllegalArgumentException("Gallery name is required");
         }
-        if (dto.getOwnerName() == null || dto.getOwnerName().trim().isEmpty()) {
+        if (dto.ownerName() == null || dto.ownerName().trim().isEmpty()) {
             throw new IllegalArgumentException("Owner name is required");
         }
     }
