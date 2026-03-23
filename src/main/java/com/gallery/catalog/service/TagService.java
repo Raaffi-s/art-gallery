@@ -1,5 +1,7 @@
 package com.gallery.catalog.service;
 
+import com.gallery.catalog.dto.TagDto;
+import com.gallery.catalog.exception.TagNotFoundException;
 import com.gallery.catalog.model.Tag;
 import com.gallery.catalog.repository.TagRepository;
 import java.util.List;
@@ -8,65 +10,75 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TagService {
-    private static final String TAG_NOT_FOUND_MESSAGE = "Tag not found";
+
     private final TagRepository tagRepository;
 
     public TagService(TagRepository tagRepository) {
         this.tagRepository = tagRepository;
     }
 
-    @Transactional(readOnly = true)
-    public List<Tag> getAllTags() {
-        return tagRepository.findAll();
+    private TagDto convertToDto(Tag tag) {
+        TagDto dto = new TagDto();
+        dto.setId(tag.getId());
+        dto.setName(tag.getName());
+        dto.setDescription(tag.getDescription());
+        return dto;
     }
 
     @Transactional(readOnly = true)
-    public Tag getTagById(Long id) {
-        return tagRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException(TAG_NOT_FOUND_MESSAGE + id));
+    public List<TagDto> getAllTags() {
+        return tagRepository.findAll().stream()
+            .map(this::convertToDto)
+            .toList();
     }
 
     @Transactional(readOnly = true)
-    public Tag getTagByName(String name) {
-        return tagRepository.findByName(name.trim())
-            .orElseThrow(() -> new IllegalArgumentException(TAG_NOT_FOUND_MESSAGE + name));
+    public TagDto getTagById(Long id) {
+        return convertToDto(tagRepository.findById(id)
+            .orElseThrow(() -> new TagNotFoundException(id.toString())));
+    }
+
+    @Transactional(readOnly = true)
+    public TagDto getTagByName(String name) {
+        return convertToDto(tagRepository.findByName(name.trim())
+            .orElseThrow(() -> new TagNotFoundException(name)));
     }
 
     @Transactional
-    public Tag createTag(Tag tag) {
-        if (tag.getName() == null || tag.getName().trim().isEmpty()) {
+    public TagDto createTag(TagDto dto) {
+        if (dto.getName() == null || dto.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("Tag name is required");
         }
 
-        tagRepository.findByName(tag.getName().trim()).ifPresent(existing -> {
-            throw new IllegalArgumentException(
-                "Tag already exists: " + tag.getName());
+        tagRepository.findByName(dto.getName().trim()).ifPresent(existing -> {
+            throw new IllegalArgumentException("Tag already exists: " + dto.getName());
         });
 
-        tag.setName(tag.getName().trim());
-        return tagRepository.save(tag);
+        Tag tag = new Tag();
+        tag.setName(dto.getName().trim());
+        tag.setDescription(dto.getDescription());
+        return convertToDto(tagRepository.save(tag));
     }
 
     @Transactional
-    public Tag updateTag(Long id, Tag updated) {
-        if (updated.getName() == null || updated.getName().trim().isEmpty()) {
+    public TagDto updateTag(Long id, TagDto dto) {
+        if (dto.getName() == null || dto.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("Tag name is required");
         }
 
         Tag tag = tagRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Tag not found: " + id));
+            .orElseThrow(() -> new TagNotFoundException(id.toString()));
 
-        tag.setName(updated.getName().trim());
-        tag.setDescription(updated.getDescription());
-        return tagRepository.save(tag);
+        tag.setName(dto.getName().trim());
+        tag.setDescription(dto.getDescription());
+        return convertToDto(tagRepository.save(tag));
     }
 
     @Transactional
     public void deleteTag(Long id) {
         if (!tagRepository.existsById(id)) {
-            throw new IllegalArgumentException("Tag not found: " + id);
+            throw new TagNotFoundException(id.toString());
         }
         tagRepository.deleteById(id);
     }
 }
-

@@ -1,6 +1,6 @@
 package com.gallery.catalog.controller;
 
-import com.gallery.catalog.model.Tag;
+import com.gallery.catalog.dto.TagDto;
 import com.gallery.catalog.service.TagService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ public class TagController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Tag>> getAllTags(
+    public ResponseEntity<List<TagDto>> getAllTags(
         @RequestParam(required = false) String name) {
         if (name != null && !name.isEmpty()) {
             return ResponseEntity.ok(List.of(tagService.getTagByName(name)));
@@ -35,21 +35,21 @@ public class TagController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tag> getTagById(@PathVariable Long id) {
+    public ResponseEntity<TagDto> getTagById(@PathVariable Long id) {
         return ResponseEntity.ok(tagService.getTagById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Tag> createTag(@RequestBody Tag tag) {
-        Tag created = tagService.createTag(tag);
+    public ResponseEntity<TagDto> createTag(@RequestBody TagDto dto) {
+        TagDto created = tagService.createTag(dto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tag> updateTag(
+    public ResponseEntity<TagDto> updateTag(
         @PathVariable Long id,
-        @RequestBody Tag tag) {
-        return ResponseEntity.ok(tagService.updateTag(id, tag));
+        @RequestBody TagDto dto) {
+        return ResponseEntity.ok(tagService.updateTag(id, dto));
     }
 
     @DeleteMapping("/{id}")
