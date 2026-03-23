@@ -18,30 +18,24 @@ public class UserService {
     }
 
     private UserDto convertToDto(User user) {
-        UserDto dto = new UserDto();
-        dto.setId(user.getId());
-        dto.setUsername(user.getUsername());
-        dto.setEmail(user.getEmail());
-        dto.setFullName(user.getFullName());
-        dto.setAvatarUrl(user.getAvatarUrl());
-        dto.setBio(user.getBio());
-
-        if (user.getPaintings() != null) {
-            dto.setPaintingsCount(user.getPaintings().size());
-        }
-        if (user.getGalleries() != null) {
-            dto.setGalleriesCount(user.getGalleries().size());
-        }
-
-        return dto;
+        return new UserDto(
+            user.getId(),
+            user.getUsername(),
+            user.getEmail(),
+            user.getFullName(),
+            user.getAvatarUrl(),
+            user.getBio(),
+            user.getPaintings() != null ? user.getPaintings().size() : null,
+            user.getGalleries() != null ? user.getGalleries().size() : null
+        );
     }
 
     private void updateUserFromDto(User user, UserDto dto) {
-        user.setUsername(dto.getUsername().trim());
-        user.setEmail(dto.getEmail().trim());
-        user.setFullName(dto.getFullName());
-        user.setAvatarUrl(dto.getAvatarUrl());
-        user.setBio(dto.getBio());
+        user.setUsername(dto.username().trim());
+        user.setEmail(dto.email().trim());
+        user.setFullName(dto.fullName());
+        user.setAvatarUrl(dto.avatarUrl());
+        user.setBio(dto.bio());
     }
 
     @Transactional(readOnly = true)
@@ -96,10 +90,10 @@ public class UserService {
     }
 
     private void validateUserDto(UserDto dto) {
-        if (dto.getUsername() == null || dto.getUsername().trim().isEmpty()) {
+        if (dto.username() == null || dto.username().trim().isEmpty()) {
             throw new IllegalArgumentException("Username is required");
         }
-        if (dto.getEmail() == null || dto.getEmail().trim().isEmpty()) {
+        if (dto.email() == null || dto.email().trim().isEmpty()) {
             throw new IllegalArgumentException("Email is required");
         }
     }
