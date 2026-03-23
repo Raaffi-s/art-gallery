@@ -28,6 +28,11 @@
         <!-- CheckStyle versions -->
         <checkstyle.version>10.12.0</checkstyle.version>
         <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
+
+        <sonar.cpd.exclusions>
+            **/dto/**,
+            **/model/**
+        </sonar.cpd.exclusions>
     </properties>
 
     <dependencies>
