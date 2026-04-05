@@ -1,6 +1,5 @@
 package com.gallery.catalog.service;
 
-import com.gallery.catalog.exception.TransactionDemoException;
 import com.gallery.catalog.model.Gallery;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.User;
@@ -31,21 +30,29 @@ public class TransactionDemoService {
         this.paintingRepository = paintingRepository;
     }
 
+    /**
+     * Демонстрирует сохранение нескольких связанных сущностей БЕЗ транзакции.
+     * При ошибке данные частично сохраняются в БД (User и Gallery уже записаны).
+     */
+    public void createGalleryWithoutTransaction() {
+        User user = createUser();
+        Gallery gallery = createGallery(user);
+        createPainting(gallery);
+
+        throw new RuntimeException("Simulated error - data already saved in database!");
+    }
+
+    /**
+     * Демонстрирует сохранение нескольких связанных сущностей С транзакцией.
+     * При ошибке все изменения полностью откатываются — ни одна запись не сохраняется.
+     */
     @Transactional(rollbackFor = Exception.class)
     public void createGalleryWithTransaction() {
         User user = createUser();
         Gallery gallery = createGallery(user);
-        createPainting(user, gallery);
+        createPainting(gallery);
 
-        throw new TransactionDemoException("Simulated error - transaction rolling back all data");
-    }
-
-    public void createGalleryWithoutTransaction() {
-        User user = createUser();
-        Gallery gallery = createGallery(user);
-        createPainting(user, gallery);
-
-        throw new TransactionDemoException("Simulated error - data already saved in database!");
+        throw new RuntimeException("Simulated error - transaction rolling back all data");
     }
 
     private User createUser() {
@@ -64,14 +71,13 @@ public class TransactionDemoService {
         return galleryRepository.save(gallery);
     }
 
-    private Painting createPainting(User user, Gallery gallery) {
+    private void createPainting(Gallery gallery) {
         Painting painting = new Painting();
         painting.setTitle(PAINTING_TITLE_PREFIX + System.currentTimeMillis());
-        painting.setArtist(user.getFullName());
+        painting.setArtist(gallery.getOwner().getFullName());
         painting.setYear(2024);
-        painting.setPrice(1_000_000.0);
-        painting.setUser(user);
+        painting.setPrice(1_000_000L);
         painting.setGallery(gallery);
-        return paintingRepository.save(painting);
+        paintingRepository.save(painting);  // без return
     }
 }

@@ -3,8 +3,11 @@ package com.gallery.catalog.model;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +30,8 @@ public class User extends BaseEntity {
     @Column(length = 500)
     private String bio;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Painting> paintings = new ArrayList<>();
-
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true,
+        fetch = FetchType.LAZY)
     private List<Gallery> galleries = new ArrayList<>();
 
     public User() {
@@ -41,7 +42,11 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
-    // Геттеры и сеттеры
+    @PrePersist
+    public void onCreate() {
+        setCreatedAt(LocalDateTime.now());
+    }
+
     public String getUsername() {
         return username;
     }
@@ -80,14 +85,6 @@ public class User extends BaseEntity {
 
     public void setBio(String bio) {
         this.bio = bio;
-    }
-
-    public List<Painting> getPaintings() {
-        return paintings;
-    }
-
-    public void setPaintings(List<Painting> paintings) {
-        this.paintings = paintings;
     }
 
     public List<Gallery> getGalleries() {

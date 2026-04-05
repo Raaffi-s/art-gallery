@@ -8,7 +8,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,13 +28,12 @@ public class Painting extends BaseEntity {
     private String artist;
 
     private Integer year;
-    private Double price;
-    private String imageUrl;
-    private String technique;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private Long price;
+
+    private String imageUrl;
+
+    private String technique;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gallery_id")
@@ -54,7 +55,11 @@ public class Painting extends BaseEntity {
         this.artist = artist;
     }
 
-    // Геттеры и сеттеры
+    @PrePersist
+    public void onCreate() {
+        setCreatedAt(LocalDateTime.now());
+    }
+
     public String getTitle() {
         return title;
     }
@@ -87,11 +92,11 @@ public class Painting extends BaseEntity {
         this.year = year;
     }
 
-    public Double getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
@@ -109,14 +114,6 @@ public class Painting extends BaseEntity {
 
     public void setTechnique(String technique) {
         this.technique = technique;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Gallery getGallery() {
@@ -138,7 +135,7 @@ public class Painting extends BaseEntity {
     @Override
     public String toString() {
         return "Painting{"
-            + "id=" + id
+            + "id=" + getId()
             + ", title='" + title + '\''
             + ", artist='" + artist + '\''
             + ", year=" + year

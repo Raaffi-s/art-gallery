@@ -2,12 +2,9 @@ package com.gallery.catalog.service;
 
 import com.gallery.catalog.dto.PaintingDto;
 import com.gallery.catalog.exception.PaintingNotFoundException;
-import com.gallery.catalog.exception.UserNotFoundException;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.Tag;
-import com.gallery.catalog.model.User;
 import com.gallery.catalog.repository.PaintingRepository;
-import com.gallery.catalog.repository.UserRepository;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,12 +18,9 @@ public class PaintingService {
     private static final int MIN_YEAR = 1000;
 
     private final PaintingRepository paintingRepository;
-    private final UserRepository userRepository;
 
-    public PaintingService(PaintingRepository paintingRepository,
-                           UserRepository userRepository) {
+    public PaintingService(PaintingRepository paintingRepository) {
         this.paintingRepository = paintingRepository;
-        this.userRepository = userRepository;
     }
 
     private PaintingDto convertToDto(Painting painting) {
@@ -46,10 +40,19 @@ public class PaintingService {
             painting.getPrice(),
             painting.getImageUrl(),
             painting.getTechnique(),
-            painting.getUser() != null ? painting.getUser().getUsername() : null,
             painting.getGallery() != null ? painting.getGallery().getName() : null,
             tagNames
         );
+    }
+
+    private void updatePaintingFromDto(Painting painting, PaintingDto dto) {
+        painting.setTitle(dto.title().trim());
+        painting.setDescription(dto.description() != null ? dto.description().trim() : null);
+        painting.setArtist(dto.artist().trim());
+        painting.setYear(dto.year());
+        painting.setPrice(dto.price());
+        painting.setImageUrl(dto.imageUrl());
+        painting.setTechnique(dto.technique());
     }
 
     public List<PaintingDto> getAllPaintings() {
@@ -85,28 +88,17 @@ public class PaintingService {
     @Transactional
     public PaintingDto createPainting(PaintingDto dto) {
         validatePaintingDto(dto);
-
         Painting painting = new Painting();
         updatePaintingFromDto(painting, dto);
-
-        if (dto.userName() != null && !dto.userName().trim().isEmpty()) {
-            User user = userRepository.findByUsername(dto.userName().trim())
-                .orElseThrow(() -> new UserNotFoundException(dto.userName()));
-            painting.setUser(user);
-        }
-
         return convertToDto(paintingRepository.save(painting));
     }
 
     @Transactional
     public PaintingDto updatePainting(Long id, PaintingDto dto) {
         validatePaintingDto(dto);
-
         Painting painting = paintingRepository.findById(id)
             .orElseThrow(() -> new PaintingNotFoundException(id));
-
         updatePaintingFromDto(painting, dto);
-
         return convertToDto(paintingRepository.save(painting));
     }
 
@@ -129,15 +121,5 @@ public class PaintingService {
             throw new IllegalArgumentException(
                 "Year must be between " + MIN_YEAR + " and " + CURRENT_YEAR);
         }
-    }
-
-    private void updatePaintingFromDto(Painting painting, PaintingDto dto) {
-        painting.setTitle(dto.title().trim());
-        painting.setDescription(dto.description() != null ? dto.description().trim() : null);
-        painting.setArtist(dto.artist().trim());
-        painting.setYear(dto.year());
-        painting.setPrice(dto.price());
-        painting.setImageUrl(dto.imageUrl());
-        painting.setTechnique(dto.technique());
     }
 }

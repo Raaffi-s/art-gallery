@@ -10,10 +10,11 @@ public record PaintingDto(
     String description,
     String artist,
     Integer year,
-    Double price,
+    Long price,
     String imageUrl,
     String technique,
-    String userName,
     String galleryName,
     Set<String> tagNames
-) {}
+) {
+
+}

@@ -10,6 +10,5 @@ public record UserDto(
     String fullName,
     String avatarUrl,
     String bio,
-    Integer paintingsCount,
     Integer galleriesCount
 ) {}

@@ -1,6 +1,7 @@
 package com.gallery.catalog.service;
 
 import com.gallery.catalog.dto.UserDto;
+import com.gallery.catalog.exception.UserNotFoundException;
 import com.gallery.catalog.model.User;
 import com.gallery.catalog.repository.UserRepository;
 import java.util.List;
@@ -9,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
-    private static final String USER_NOT_FOUND_MESSAGE = "User not found";
 
     private final UserRepository userRepository;
 
@@ -25,7 +25,6 @@ public class UserService {
             user.getFullName(),
             user.getAvatarUrl(),
             user.getBio(),
-            user.getPaintings() != null ? user.getPaintings().size() : null,
             user.getGalleries() != null ? user.getGalleries().size() : null
         );
     }
@@ -48,43 +47,38 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDto getUserById(Long id) {
         User user = userRepository.findWithDetailsById(id)
-            .orElseThrow(() -> new IllegalArgumentException(USER_NOT_FOUND_MESSAGE + id));
+            .orElseThrow(() -> new UserNotFoundException(id));
         return convertToDto(user);
     }
 
     @Transactional(readOnly = true)
     public UserDto getUserByUsername(String username) {
         User user = userRepository.findByUsername(username.trim())
-            .orElseThrow(() -> new IllegalArgumentException(USER_NOT_FOUND_MESSAGE + username));
+            .orElseThrow(() -> new UserNotFoundException(username));
         return convertToDto(user);
     }
 
     @Transactional
     public UserDto createUser(UserDto dto) {
         validateUserDto(dto);
-
         User user = new User();
         updateUserFromDto(user, dto);
-        User saved = userRepository.save(user);
-        return convertToDto(saved);
+        return convertToDto(userRepository.save(user));
     }
 
     @Transactional
     public UserDto updateUser(Long id, UserDto dto) {
         validateUserDto(dto);
-
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
-
+            .orElseThrow(() -> new UserNotFoundException(id));
         updateUserFromDto(user, dto);
-        User updated = userRepository.save(user);
-        return convertToDto(updated);
+        return convertToDto(userRepository.save(user));
     }
 
     @Transactional
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
-            throw new IllegalArgumentException("User not found: " + id);
+            throw new UserNotFoundException(id);
         }
         userRepository.deleteById(id);
     }
