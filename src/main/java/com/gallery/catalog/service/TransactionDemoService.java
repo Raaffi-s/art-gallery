@@ -1,5 +1,6 @@
 package com.gallery.catalog.service;
 
+import com.gallery.catalog.dto.TransactionRequest;
 import com.gallery.catalog.model.Gallery;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.User;
@@ -30,54 +31,78 @@ public class TransactionDemoService {
         this.paintingRepository = paintingRepository;
     }
 
-    /**
-     * Демонстрирует сохранение нескольких связанных сущностей БЕЗ транзакции.
-     * При ошибке данные частично сохраняются в БД (User и Gallery уже записаны).
-     */
-    public void createGalleryWithoutTransaction() {
-        User user = createUser();
-        Gallery gallery = createGallery(user);
-        createPainting(gallery);
+    public void createGalleryWithoutTransaction(TransactionRequest request) {
+        TransactionRequest effective = prepareRequest(request);
+
+        User user = createUser(effective);
+        Gallery gallery = createGallery(user, effective);
+        createPainting(gallery, effective);
 
         throw new RuntimeException("Simulated error - data already saved in database!");
     }
 
-    /**
-     * Демонстрирует сохранение нескольких связанных сущностей С транзакцией.
-     * При ошибке все изменения полностью откатываются — ни одна запись не сохраняется.
-     */
     @Transactional(rollbackFor = Exception.class)
-    public void createGalleryWithTransaction() {
-        User user = createUser();
-        Gallery gallery = createGallery(user);
-        createPainting(gallery);
+    public void createGalleryWithTransaction(TransactionRequest request) {
+        TransactionRequest effective = prepareRequest(request);
+
+        User user = createUser(effective);
+        Gallery gallery = createGallery(user, effective);
+        createPainting(gallery, effective);
 
         throw new RuntimeException("Simulated error - transaction rolling back all data");
     }
 
-    private User createUser() {
+    private TransactionRequest prepareRequest(TransactionRequest request) {
+        if (request == null) {
+            return new TransactionRequest(
+                "Test Artist",
+                null,
+                null,
+                1_000_000L,
+                2024
+            );
+        }
+
+        String fullName = request.userFullName() != null
+            ? request.userFullName()
+            : "Test Artist";
+        String galleryName = request.galleryName();
+        String paintingTitle = request.paintingTitle();
+        Long price = request.price() != null ? request.price() : 1_000_000L;
+        Integer year = request.year() != null ? request.year() : 2024;
+
+        return new TransactionRequest(fullName, galleryName, paintingTitle, price, year);
+    }
+
+    private User createUser(TransactionRequest request) {
         User user = new User();
         user.setUsername(ARTIST_USERNAME_PREFIX + System.currentTimeMillis());
         user.setEmail(ARTIST_USERNAME_PREFIX + System.currentTimeMillis() + ARTIST_EMAIL_DOMAIN);
-        user.setFullName("Test Artist");
+        user.setFullName(request.userFullName());
         return userRepository.save(user);
     }
 
-    private Gallery createGallery(User user) {
+    private Gallery createGallery(User user, TransactionRequest request) {
         Gallery gallery = new Gallery();
-        gallery.setName(GALLERY_NAME_PREFIX + System.currentTimeMillis());
+        String name = request.galleryName() != null
+            ? request.galleryName()
+            : GALLERY_NAME_PREFIX + System.currentTimeMillis();
+        gallery.setName(name);
         gallery.setDescription("Test Gallery Description");
         gallery.setOwner(user);
         return galleryRepository.save(gallery);
     }
 
-    private void createPainting(Gallery gallery) {
+    private void createPainting(Gallery gallery, TransactionRequest request) {
         Painting painting = new Painting();
-        painting.setTitle(PAINTING_TITLE_PREFIX + System.currentTimeMillis());
+        String title = request.paintingTitle() != null
+            ? request.paintingTitle()
+            : PAINTING_TITLE_PREFIX + System.currentTimeMillis();
+        painting.setTitle(title);
         painting.setArtist(gallery.getOwner().getFullName());
-        painting.setYear(2024);
-        painting.setPrice(1_000_000L);
+        painting.setYear(request.year());
+        painting.setPrice(request.price());
         painting.setGallery(gallery);
-        paintingRepository.save(painting);  // без return
+        paintingRepository.save(painting);
     }
 }

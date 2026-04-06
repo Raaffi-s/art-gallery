@@ -1,6 +1,7 @@
 package com.gallery.catalog.controller;
 
 import com.gallery.catalog.dto.PaintingDto;
+import com.gallery.catalog.dto.TransactionRequest;
 import com.gallery.catalog.service.PaintingService;
 import com.gallery.catalog.service.TransactionDemoService;
 import java.util.List;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,9 +33,10 @@ public class DemoController {
     }
 
     @PostMapping("/without-transaction")
-    public ResponseEntity<String> demoWithoutTransaction() {
+    public ResponseEntity<String> demoWithoutTransaction(
+        @RequestBody(required = false) TransactionRequest request) {
         try {
-            transactionDemoService.createGalleryWithoutTransaction();
+            transactionDemoService.createGalleryWithoutTransaction(request);
             return ResponseEntity.ok("Operation completed successfully");
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -43,9 +46,10 @@ public class DemoController {
     }
 
     @PostMapping("/with-transaction")
-    public ResponseEntity<String> demoWithTransaction() {
+    public ResponseEntity<String> demoWithTransaction(
+        @RequestBody(required = false) TransactionRequest request) {
         try {
-            transactionDemoService.createGalleryWithTransaction();
+            transactionDemoService.createGalleryWithTransaction(request);
             return ResponseEntity.ok("Operation completed successfully");
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
