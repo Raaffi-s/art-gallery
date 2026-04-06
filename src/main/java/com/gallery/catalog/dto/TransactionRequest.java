@@ -4,6 +4,7 @@ public record TransactionRequest(
     String userFullName,
     String galleryName,
     String paintingTitle,
-    Long price,
+    Double price,
     Integer year
-) {}
+) {
+}

@@ -28,12 +28,13 @@ public class Painting extends BaseEntity {
     private String artist;
 
     private Integer year;
-
-    private Long price;
-
+    private Double price;
     private String imageUrl;
-
     private String technique;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gallery_id")
@@ -56,6 +57,7 @@ public class Painting extends BaseEntity {
     }
 
     @PrePersist
+    @Override
     public void onCreate() {
         setCreatedAt(LocalDateTime.now());
     }
@@ -92,11 +94,11 @@ public class Painting extends BaseEntity {
         this.year = year;
     }
 
-    public Long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -114,6 +116,14 @@ public class Painting extends BaseEntity {
 
     public void setTechnique(String technique) {
         this.technique = technique;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Gallery getGallery() {
@@ -135,7 +145,7 @@ public class Painting extends BaseEntity {
     @Override
     public String toString() {
         return "Painting{"
-            + "id=" + getId()
+            + "id=" + id
             + ", title='" + title + '\''
             + ", artist='" + artist + '\''
             + ", year=" + year

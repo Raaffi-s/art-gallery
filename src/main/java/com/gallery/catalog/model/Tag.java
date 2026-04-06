@@ -26,7 +26,6 @@ public class Tag extends BaseEntity {
         this.name = name;
     }
 
-    // Геттеры и сеттеры
     public String getName() {
         return name;
     }

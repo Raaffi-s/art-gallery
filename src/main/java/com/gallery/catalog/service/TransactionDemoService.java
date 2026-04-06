@@ -25,7 +25,8 @@ public class TransactionDemoService {
     public TransactionDemoService(
         UserRepository userRepository,
         GalleryRepository galleryRepository,
-        PaintingRepository paintingRepository) {
+        PaintingRepository paintingRepository
+    ) {
         this.userRepository = userRepository;
         this.galleryRepository = galleryRepository;
         this.paintingRepository = paintingRepository;
@@ -58,7 +59,7 @@ public class TransactionDemoService {
                 "Test Artist",
                 null,
                 null,
-                1_000_000L,
+                1_000_000.0,
                 2024
             );
         }
@@ -68,7 +69,7 @@ public class TransactionDemoService {
             : "Test Artist";
         String galleryName = request.galleryName();
         String paintingTitle = request.paintingTitle();
-        Long price = request.price() != null ? request.price() : 1_000_000L;
+        Double price = request.price() != null ? request.price() : 1_000_000.0;
         Integer year = request.year() != null ? request.year() : 2024;
 
         return new TransactionRequest(fullName, galleryName, paintingTitle, price, year);
