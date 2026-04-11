@@ -2,12 +2,9 @@ package com.gallery.catalog.service;
 
 import com.gallery.catalog.dto.PaintingDto;
 import com.gallery.catalog.exception.PaintingNotFoundException;
-import com.gallery.catalog.exception.UserNotFoundException;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.Tag;
-import com.gallery.catalog.model.User;
 import com.gallery.catalog.repository.PaintingRepository;
-import com.gallery.catalog.repository.UserRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -20,12 +17,9 @@ public class PaintingService {
     private static final int MIN_YEAR = 1000;
 
     private final PaintingRepository paintingRepository;
-    private final UserRepository userRepository;
 
-    public PaintingService(PaintingRepository paintingRepository,
-                           UserRepository userRepository) {
+    public PaintingService(PaintingRepository paintingRepository) {
         this.paintingRepository = paintingRepository;
-        this.userRepository = userRepository;
     }
 
     private PaintingDto convertToDto(Painting painting) {
@@ -38,10 +32,6 @@ public class PaintingService {
         dto.setPrice(painting.getPrice());
         dto.setImageUrl(painting.getImageUrl());
         dto.setTechnique(painting.getTechnique());
-
-        if (painting.getUser() != null) {
-            dto.setUserName(painting.getUser().getUsername());
-        }
 
         if (painting.getGallery() != null) {
             dto.setGalleryName(painting.getGallery().getName());
@@ -94,12 +84,6 @@ public class PaintingService {
 
         Painting painting = new Painting();
         updatePaintingFromDto(painting, dto);
-
-        if (dto.getUserName() != null && !dto.getUserName().trim().isEmpty()) {
-            User user = userRepository.findByUsername(dto.getUserName().trim())
-                .orElseThrow(() -> new UserNotFoundException(dto.getUserName()));
-            painting.setUser(user);
-        }
 
         Painting saved = paintingRepository.save(painting);
         return convertToDto(saved);

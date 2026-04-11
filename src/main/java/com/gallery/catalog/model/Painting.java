@@ -8,7 +8,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -33,10 +32,6 @@ public class Painting extends BaseEntity {
     private String technique;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gallery_id")
     private Gallery gallery;
 
@@ -56,7 +51,6 @@ public class Painting extends BaseEntity {
         this.artist = artist;
     }
 
-    @PrePersist
     @Override
     public void onCreate() {
         setCreatedAt(LocalDateTime.now());
@@ -118,14 +112,6 @@ public class Painting extends BaseEntity {
         this.technique = technique;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Gallery getGallery() {
         return gallery;
     }
@@ -145,7 +131,7 @@ public class Painting extends BaseEntity {
     @Override
     public String toString() {
         return "Painting{"
-            + "id=" + id
+            + "id=" + getId()
             + ", title='" + title + '\''
             + ", artist='" + artist + '\''
             + ", year=" + year

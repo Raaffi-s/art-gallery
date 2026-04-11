@@ -16,13 +16,11 @@ public class PaintingDto extends BaseDto {
     private Double price;
     private String imageUrl;
     private String technique;
-    private String userName;
     private String galleryName;
     private Set<String> tagNames;
 
-    // Default no-args constructor required for frameworks (e.g. Jackson / Spring)
     public PaintingDto() {
-        // Default no-args constructor required for frameworks (e.g. Jackson / Spring)
+        //пустой конструктор
     }
 
     public String getTitle() {
@@ -85,14 +83,6 @@ public class PaintingDto extends BaseDto {
 
     public void setTechnique(String technique) {
         this.technique = technique;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getGalleryName() {
