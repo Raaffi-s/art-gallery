@@ -1,7 +1,6 @@
 package com.gallery.catalog.service;
 
 import com.gallery.catalog.dto.UserDto;
-import com.gallery.catalog.exception.UserNotFoundException;
 import com.gallery.catalog.model.User;
 import com.gallery.catalog.repository.UserRepository;
 import java.util.List;
@@ -47,38 +46,45 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDto getUserById(Long id) {
         User user = userRepository.findWithDetailsById(id)
-            .orElseThrow(() -> new UserNotFoundException(id));
+            .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
         return convertToDto(user);
     }
 
     @Transactional(readOnly = true)
     public UserDto getUserByUsername(String username) {
         User user = userRepository.findByUsername(username.trim())
-            .orElseThrow(() -> new UserNotFoundException(username));
+            .orElseThrow(() -> new IllegalArgumentException("User not found: " + username));
         return convertToDto(user);
     }
 
     @Transactional
     public UserDto createUser(UserDto dto) {
         validateUserDto(dto);
+
         User user = new User();
         updateUserFromDto(user, dto);
-        return convertToDto(userRepository.save(user));
+
+        User saved = userRepository.save(user);
+        return convertToDto(saved);
     }
 
     @Transactional
     public UserDto updateUser(Long id, UserDto dto) {
         validateUserDto(dto);
+
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new UserNotFoundException(id));
+            .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+
         updateUserFromDto(user, dto);
-        return convertToDto(userRepository.save(user));
+
+        User updated = userRepository.save(user);
+        return convertToDto(updated);
     }
 
     @Transactional
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
-            throw new UserNotFoundException(id);
+            throw new IllegalArgumentException("User not found: " + id);
         }
         userRepository.deleteById(id);
     }
