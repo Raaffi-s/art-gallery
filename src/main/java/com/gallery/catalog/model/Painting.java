@@ -127,14 +127,4 @@ public class Painting extends BaseEntity {
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
-
-    @Override
-    public String toString() {
-        return "Painting{"
-            + "id=" + getId()
-            + ", title='" + title + '\''
-            + ", artist='" + artist + '\''
-            + ", year=" + year
-            + '}';
-    }
 }

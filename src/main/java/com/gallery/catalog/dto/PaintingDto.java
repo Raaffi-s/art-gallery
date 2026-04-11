@@ -20,7 +20,6 @@ public class PaintingDto extends BaseDto {
     private Set<String> tagNames;
 
     public PaintingDto() {
-        //пустой конструктор
     }
 
     public String getTitle() {
@@ -99,13 +98,5 @@ public class PaintingDto extends BaseDto {
 
     public void setTagNames(Set<String> tagNames) {
         this.tagNames = tagNames;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-            "PaintingDto{id=%d, title='%s', artist='%s', year=%d}",
-            getId(), title, artist, year
-        );
     }
 }
