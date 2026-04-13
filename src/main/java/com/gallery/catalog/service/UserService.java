@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
+    private static final String USER_NOT_FOUND = "User not found: ";
+
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -46,14 +48,14 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDto getUserById(Long id) {
         User user = userRepository.findWithDetailsById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+            .orElseThrow(() -> new IllegalArgumentException(USER_NOT_FOUND + id));
         return convertToDto(user);
     }
 
     @Transactional(readOnly = true)
     public UserDto getUserByUsername(String username) {
         User user = userRepository.findByUsername(username.trim())
-            .orElseThrow(() -> new IllegalArgumentException("User not found: " + username));
+            .orElseThrow(() -> new IllegalArgumentException(USER_NOT_FOUND + username));
         return convertToDto(user);
     }
 
@@ -73,7 +75,7 @@ public class UserService {
         validateUserDto(dto);
 
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+            .orElseThrow(() -> new IllegalArgumentException(USER_NOT_FOUND + id));
 
         updateUserFromDto(user, dto);
 
@@ -84,7 +86,7 @@ public class UserService {
     @Transactional
     public void deleteUser(Long id) {
         if (!userRepository.existsById(id)) {
-            throw new IllegalArgumentException("User not found: " + id);
+            throw new IllegalArgumentException(USER_NOT_FOUND + id);
         }
         userRepository.deleteById(id);
     }

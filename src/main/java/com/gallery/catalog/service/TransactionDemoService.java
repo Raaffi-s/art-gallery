@@ -1,6 +1,6 @@
 package com.gallery.catalog.service;
 
-import com.gallery.catalog.dto.TransactionRequest;
+import com.gallery.catalog.exception.DemoTransactionException;
 import com.gallery.catalog.model.Gallery;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.User;
@@ -17,6 +17,8 @@ public class TransactionDemoService {
     private static final String ARTIST_EMAIL_DOMAIN = "@example.com";
     private static final String GALLERY_NAME_PREFIX = "My Gallery ";
     private static final String PAINTING_TITLE_PREFIX = "Masterpiece ";
+    private static final String TEST_ARTIST_NAME = "Test Artist";
+    private static final String TEST_GALLERY_DESCRIPTION = "Test Gallery Description";
 
     private final UserRepository userRepository;
     private final GalleryRepository galleryRepository;
@@ -32,78 +34,55 @@ public class TransactionDemoService {
         this.paintingRepository = paintingRepository;
     }
 
-    public void createGalleryWithoutTransaction(TransactionRequest request) {
-        TransactionRequest effective = prepareRequest(request);
+    @Transactional(rollbackFor = DemoTransactionException.class)
+    public void createGalleryWithTransaction() {
+        User user = createUser();
+        Gallery gallery = createGallery(user);
+        createPainting(user, gallery);
 
-        User user = createUser(effective);
-        Gallery gallery = createGallery(user, effective);
-        createPainting(gallery, effective);
-
-        throw new RuntimeException("Simulated error - data already saved in database!");
+        throw new DemoTransactionException(
+            "Simulated error: transaction rolling back all data"
+        );
     }
 
-    @Transactional(rollbackFor = Exception.class)
-    public void createGalleryWithTransaction(TransactionRequest request) {
-        TransactionRequest effective = prepareRequest(request);
+    public void createGalleryWithoutTransaction() {
+        User user = createUser();
+        Gallery gallery = createGallery(user);
+        createPainting(user, gallery);
 
-        User user = createUser(effective);
-        Gallery gallery = createGallery(user, effective);
-        createPainting(gallery, effective);
-
-        throw new RuntimeException("Simulated error - transaction rolling back all data");
+        throw new DemoTransactionException(
+            "Simulated error: data already saved in database"
+        );
     }
 
-    private TransactionRequest prepareRequest(TransactionRequest request) {
-        if (request == null) {
-            return new TransactionRequest(
-                "Test Artist",
-                null,
-                null,
-                1_000_000.0,
-                2024
-            );
-        }
+    private User createUser() {
+        long currentTime = System.currentTimeMillis();
 
-        String fullName = request.userFullName() != null
-            ? request.userFullName()
-            : "Test Artist";
-        String galleryName = request.galleryName();
-        String paintingTitle = request.paintingTitle();
-        Double price = request.price() != null ? request.price() : 1_000_000.0;
-        Integer year = request.year() != null ? request.year() : 2024;
-
-        return new TransactionRequest(fullName, galleryName, paintingTitle, price, year);
-    }
-
-    private User createUser(TransactionRequest request) {
         User user = new User();
-        user.setUsername(ARTIST_USERNAME_PREFIX + System.currentTimeMillis());
-        user.setEmail(ARTIST_USERNAME_PREFIX + System.currentTimeMillis() + ARTIST_EMAIL_DOMAIN);
-        user.setFullName(request.userFullName());
+        user.setUsername(ARTIST_USERNAME_PREFIX + currentTime);
+        user.setEmail(ARTIST_USERNAME_PREFIX + currentTime + ARTIST_EMAIL_DOMAIN);
+        user.setFullName(TEST_ARTIST_NAME);
+
         return userRepository.save(user);
     }
 
-    private Gallery createGallery(User user, TransactionRequest request) {
+    private Gallery createGallery(User user) {
         Gallery gallery = new Gallery();
-        String name = request.galleryName() != null
-            ? request.galleryName()
-            : GALLERY_NAME_PREFIX + System.currentTimeMillis();
-        gallery.setName(name);
-        gallery.setDescription("Test Gallery Description");
+        gallery.setName(GALLERY_NAME_PREFIX + System.currentTimeMillis());
+        gallery.setDescription(TEST_GALLERY_DESCRIPTION);
         gallery.setOwner(user);
+
         return galleryRepository.save(gallery);
     }
 
-    private void createPainting(Gallery gallery, TransactionRequest request) {
+    private Painting createPainting(User user, Gallery gallery) {
         Painting painting = new Painting();
-        String title = request.paintingTitle() != null
-            ? request.paintingTitle()
-            : PAINTING_TITLE_PREFIX + System.currentTimeMillis();
-        painting.setTitle(title);
-        painting.setArtist(gallery.getOwner().getFullName());
-        painting.setYear(request.year());
-        painting.setPrice(request.price());
+        painting.setTitle(PAINTING_TITLE_PREFIX + System.currentTimeMillis());
+        painting.setArtist(user.getFullName());
+        painting.setYear(2024);
+        painting.setPrice(1_000_000.0);
         painting.setGallery(gallery);
-        paintingRepository.save(painting);
+
+        return paintingRepository.save(painting);
     }
 }
