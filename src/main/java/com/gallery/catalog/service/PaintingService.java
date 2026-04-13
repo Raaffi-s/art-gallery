@@ -4,6 +4,8 @@ import com.gallery.catalog.dto.PaintingDto;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.Tag;
 import com.gallery.catalog.repository.PaintingRepository;
+import com.gallery.catalog.repository.TagRepository;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,11 +19,18 @@ public class PaintingService {
     private static final int MIN_YEAR = 1000;
     private static final int MAX_TITLE_LENGTH = 255;
     private static final int MAX_DESCRIPTION_LENGTH = 1000;
+    private static final String PAINTING_NOT_FOUND = "Painting not found: ";
+    private static final String TAG_NAME_REQUIRED = "Tag name is required";
 
     private final PaintingRepository paintingRepository;
+    private final TagRepository tagRepository;
 
-    public PaintingService(PaintingRepository paintingRepository) {
+    public PaintingService(
+        PaintingRepository paintingRepository,
+        TagRepository tagRepository
+    ) {
         this.paintingRepository = paintingRepository;
+        this.tagRepository = tagRepository;
     }
 
     private PaintingDto convertToDto(Painting painting) {
@@ -54,7 +63,7 @@ public class PaintingService {
     @Transactional(readOnly = true)
     public PaintingDto getPaintingById(Long id) {
         Painting painting = paintingRepository.findWithDetailsById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Painting not found: " + id));
+            .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND + id));
         return convertToDto(painting);
     }
 
@@ -94,7 +103,7 @@ public class PaintingService {
         validatePaintingDto(dto);
 
         Painting painting = paintingRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Painting not found: " + id));
+            .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND + id));
 
         updatePaintingFromDto(painting, dto);
 
@@ -103,9 +112,51 @@ public class PaintingService {
     }
 
     @Transactional
+    public PaintingDto addTagToPainting(Long paintingId, String tagName) {
+        Painting painting = paintingRepository.findWithDetailsById(paintingId)
+            .orElseThrow(() -> new IllegalArgumentException(
+                PAINTING_NOT_FOUND + paintingId));
+
+        String normalizedTagName = normalizeTagName(tagName);
+
+        Tag tag = tagRepository.findByName(normalizedTagName)
+            .orElseGet(() -> {
+                Tag newTag = new Tag();
+                newTag.setName(normalizedTagName);
+                return tagRepository.save(newTag);
+            });
+
+        if (painting.getTags() == null) {
+            painting.setTags(new HashSet<>());
+        }
+
+        painting.getTags().add(tag);
+
+        Painting updated = paintingRepository.save(painting);
+        return convertToDto(updated);
+    }
+
+    @Transactional
+    public PaintingDto removeTagFromPainting(Long paintingId, String tagName) {
+        Painting painting = paintingRepository.findWithDetailsById(paintingId)
+            .orElseThrow(() -> new IllegalArgumentException(
+                PAINTING_NOT_FOUND + paintingId));
+
+        String normalizedTagName = normalizeTagName(tagName);
+
+        if (painting.getTags() != null) {
+            painting.getTags().removeIf(tag ->
+                normalizedTagName.equalsIgnoreCase(tag.getName()));
+        }
+
+        Painting updated = paintingRepository.save(painting);
+        return convertToDto(updated);
+    }
+
+    @Transactional
     public void deletePainting(Long id) {
         if (!paintingRepository.existsById(id)) {
-            throw new IllegalArgumentException("Painting not found: " + id);
+            throw new IllegalArgumentException(PAINTING_NOT_FOUND + id);
         }
         paintingRepository.deleteById(id);
     }
@@ -140,5 +191,12 @@ public class PaintingService {
         painting.setPrice(dto.price());
         painting.setImageUrl(dto.imageUrl());
         painting.setTechnique(dto.technique());
+    }
+
+    private String normalizeTagName(String tagName) {
+        if (tagName == null || tagName.trim().isEmpty()) {
+            throw new IllegalArgumentException(TAG_NAME_REQUIRED);
+        }
+        return tagName.trim();
     }
 }
