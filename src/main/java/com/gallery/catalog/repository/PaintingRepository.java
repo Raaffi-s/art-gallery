@@ -23,6 +23,12 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
         + "WHERE LOWER(p.artist) LIKE LOWER(CONCAT('%', :artist, '%'))")
     List<Painting> findByArtistWithDetails(@Param("artist") String artist);
 
+    @Query("SELECT DISTINCT p FROM Painting p "
+        + "LEFT JOIN FETCH p.gallery g "
+        + "LEFT JOIN FETCH p.tags "
+        + "WHERE LOWER(g.name) LIKE LOWER(CONCAT('%', :galleryName, '%'))")
+    List<Painting> findByGalleryName(@Param("galleryName") String galleryName);
+
     @EntityGraph(attributePaths = {"gallery", "tags"})
     Optional<Painting> findWithDetailsById(Long id);
 }

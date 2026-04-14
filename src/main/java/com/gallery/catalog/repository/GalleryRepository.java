@@ -12,6 +12,8 @@ public interface GalleryRepository extends JpaRepository<Gallery, Long> {
 
     List<Gallery> findByOwnerId(Long ownerId);
 
+    Optional<Gallery> findByName(String name);
+
     @EntityGraph(attributePaths = {"owner", "paintings"})
     Optional<Gallery> findWithDetailsById(Long id);
 }

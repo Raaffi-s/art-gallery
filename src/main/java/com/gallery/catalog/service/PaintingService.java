@@ -3,6 +3,7 @@ package com.gallery.catalog.service;
 import com.gallery.catalog.dto.PaintingDto;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.Tag;
+import com.gallery.catalog.repository.GalleryRepository;
 import com.gallery.catalog.repository.PaintingRepository;
 import com.gallery.catalog.repository.TagRepository;
 import java.util.HashSet;
@@ -24,13 +25,16 @@ public class PaintingService {
 
     private final PaintingRepository paintingRepository;
     private final TagRepository tagRepository;
+    private final GalleryRepository galleryRepository;
 
     public PaintingService(
         PaintingRepository paintingRepository,
-        TagRepository tagRepository
+        TagRepository tagRepository,
+        GalleryRepository galleryRepository
     ) {
         this.paintingRepository = paintingRepository;
         this.tagRepository = tagRepository;
+        this.galleryRepository = galleryRepository;
     }
 
     private PaintingDto convertToDto(Painting painting) {
@@ -80,6 +84,18 @@ public class PaintingService {
     }
 
     @Transactional(readOnly = true)
+    public List<PaintingDto> getPaintingsByGalleryName(String galleryName) {
+        if (galleryName == null || galleryName.trim().isEmpty()) {
+            return List.of();
+        }
+
+        return paintingRepository.findByGalleryName(galleryName.trim())
+            .stream()
+            .map(this::convertToDto)
+            .toList();
+    }
+
+    @Transactional(readOnly = true)
     public List<PaintingDto> getPaintingsWithNplus1Problem() {
         return paintingRepository.findAll()
             .stream()
@@ -114,8 +130,7 @@ public class PaintingService {
     @Transactional
     public PaintingDto addTagToPainting(Long paintingId, String tagName) {
         Painting painting = paintingRepository.findWithDetailsById(paintingId)
-            .orElseThrow(() -> new IllegalArgumentException(
-                PAINTING_NOT_FOUND + paintingId));
+            .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND + paintingId));
 
         String normalizedTagName = normalizeTagName(tagName);
 
@@ -139,8 +154,7 @@ public class PaintingService {
     @Transactional
     public PaintingDto removeTagFromPainting(Long paintingId, String tagName) {
         Painting painting = paintingRepository.findWithDetailsById(paintingId)
-            .orElseThrow(() -> new IllegalArgumentException(
-                PAINTING_NOT_FOUND + paintingId));
+            .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND + paintingId));
 
         String normalizedTagName = normalizeTagName(tagName);
 
@@ -183,14 +197,19 @@ public class PaintingService {
 
     private void updatePaintingFromDto(Painting painting, PaintingDto dto) {
         painting.setTitle(dto.title().trim());
-        painting.setDescription(
-            dto.description() != null ? dto.description().trim() : null
-        );
+        painting.setDescription(dto.description() != null ? dto.description().trim() : null);
         painting.setArtist(dto.artist().trim());
         painting.setYear(dto.year());
         painting.setPrice(dto.price());
         painting.setImageUrl(dto.imageUrl());
         painting.setTechnique(dto.technique());
+
+        if (dto.galleryName() != null && !dto.galleryName().isBlank()) {
+            galleryRepository.findByName(dto.galleryName().trim())
+                .ifPresent(painting::setGallery);
+        } else {
+            painting.setGallery(null);
+        }
     }
 
     private String normalizeTagName(String tagName) {

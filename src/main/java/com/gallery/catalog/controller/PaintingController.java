@@ -28,11 +28,19 @@ public class PaintingController {
 
     @GetMapping
     public ResponseEntity<List<PaintingDto>> getPaintings(
-        @RequestParam(required = false) String artist) {
-        if (artist != null && !artist.isEmpty()) {
+        @RequestParam(required = false) String artist
+    ) {
+        if (artist != null && !artist.isBlank()) {
             return ResponseEntity.ok(paintingService.getPaintingsByArtist(artist));
         }
         return ResponseEntity.ok(paintingService.getAllPaintings());
+    }
+
+    @GetMapping("/galleries")
+    public ResponseEntity<List<PaintingDto>> getPaintingsByGalleryJpql(
+        @RequestParam String galleryName
+    ) {
+        return ResponseEntity.ok(paintingService.getPaintingsByGalleryName(galleryName));
     }
 
     @GetMapping("/{id}")
@@ -49,21 +57,24 @@ public class PaintingController {
     @PutMapping("/{id}")
     public ResponseEntity<PaintingDto> updatePainting(
         @PathVariable Long id,
-        @RequestBody PaintingDto dto) {
+        @RequestBody PaintingDto dto
+    ) {
         return ResponseEntity.ok(paintingService.updatePainting(id, dto));
     }
 
     @PatchMapping("/{id}/tags/{tagName}")
     public ResponseEntity<PaintingDto> addTagToPainting(
         @PathVariable Long id,
-        @PathVariable String tagName) {
+        @PathVariable String tagName
+    ) {
         return ResponseEntity.ok(paintingService.addTagToPainting(id, tagName));
     }
 
     @DeleteMapping("/{id}/tags/{tagName}")
     public ResponseEntity<PaintingDto> removeTagFromPainting(
         @PathVariable Long id,
-        @PathVariable String tagName) {
+        @PathVariable String tagName
+    ) {
         return ResponseEntity.ok(paintingService.removeTagFromPainting(id, tagName));
     }
 
