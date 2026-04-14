@@ -1,6 +1,9 @@
 package com.gallery.catalog.controller;
 
+import com.gallery.catalog.dto.PaintingDto;
+import com.gallery.catalog.service.PaintingService;
 import com.gallery.catalog.service.TransactionDemoService;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,15 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     private final TransactionDemoService transactionDemoService;
+    private final PaintingService paintingService;
 
-    public DemoController(TransactionDemoService transactionDemoService) {
+    public DemoController(
+        TransactionDemoService transactionDemoService,
+        PaintingService paintingService
+    ) {
         this.transactionDemoService = transactionDemoService;
+        this.paintingService = paintingService;
     }
 
     @GetMapping("/n-plus-1")
-    public ResponseEntity<String> showNPlusOneProblem() {
+    public ResponseEntity<List<PaintingDto>> showNPlusOneProblem() {
         return ResponseEntity.ok(
-            "N+1 problem demo endpoint"
+            paintingService.getPaintingsWithNplus1Problem()
+        );
+    }
+
+    @GetMapping("/n-plus-1-fixed")
+    public ResponseEntity<List<PaintingDto>> showSolvedNPlusOneProblem() {
+        return ResponseEntity.ok(
+            paintingService.getAllPaintings()
         );
     }
 

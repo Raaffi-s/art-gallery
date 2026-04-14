@@ -1,8 +1,8 @@
 {
   "info": {
-    "name": "Art Gallery API Full",
-    "_postman_id": "2d0f9c2d-44c7-4ddf-9a84-7c9d8d9b0001",
-    "description": "Full Postman collection for Art Gallery project: paintings, users, galleries, tags, exhibitions, demo",
+    "name": "Gallery Catalog API",
+    "_postman_id": "b8c0a8d2-7e3b-4c28-9b2f-gallery-catalog",
+    "description": "Collection for Gallery Catalog controllers",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -13,167 +13,27 @@
   ],
   "item": [
     {
-      "name": "Paintings",
-      "item": [
-        {
-          "name": "Get all paintings",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings"]
-            }
-          }
-        },
-        {
-          "name": "Get paintings by artist",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings?artist=Monet",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings"],
-              "query": [
-                {
-                  "key": "artist",
-                  "value": "Monet"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "Get painting by id",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings", "1"]
-            }
-          }
-        },
-        {
-          "name": "Create painting",
-          "request": {
-            "method": "POST",
-            "header": [
-              { "key": "Content-Type", "value": "application/json" }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"Water Lilies\",\n  \"description\": \"Famous impressionist painting\",\n  \"artist\": \"Claude Monet\",\n  \"year\": 1916,\n  \"price\": 1500000.0,\n  \"imageUrl\": \"https://example.com/monet.jpg\",\n  \"technique\": \"Oil on canvas\",\n  \"galleryName\": \"Paris Gallery\",\n  \"tagNames\": [\"impressionism\", \"landscape\"]\n}"
-            },
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings"]
-            }
-          }
-        },
-        {
-          "name": "Update painting",
-          "request": {
-            "method": "PUT",
-            "header": [
-              { "key": "Content-Type", "value": "application/json" }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"Water Lilies Updated\",\n  \"description\": \"Updated description\",\n  \"artist\": \"Claude Monet\",\n  \"year\": 1917,\n  \"price\": 1700000.0,\n  \"imageUrl\": \"https://example.com/monet-new.jpg\",\n  \"technique\": \"Oil on canvas\",\n  \"galleryName\": \"Paris Gallery\",\n  \"tagNames\": [\"impressionism\", \"nature\"]\n}"
-            },
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings", "1"]
-            }
-          }
-        },
-        {
-          "name": "Add tag to painting",
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings/1/tags/impressionism",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings", "1", "tags", "impressionism"]
-            }
-          }
-        },
-        {
-          "name": "Remove tag from painting",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings/1/tags/impressionism",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings", "1", "tags", "impressionism"]
-            }
-          }
-        },
-        {
-          "name": "Delete painting",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/paintings/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "paintings", "1"]
-            }
-          }
-        }
-      ]
-    },
-    {
       "name": "Users",
       "item": [
         {
           "name": "Get all users",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/users",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "users"]
-            }
+            "url": "{{baseUrl}}/api/users"
           }
         },
         {
           "name": "Get user by username",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/users?username=john_doe",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "users"],
-              "query": [
-                {
-                  "key": "username",
-                  "value": "john_doe"
-                }
-              ]
-            }
+            "url": "{{baseUrl}}/api/users?username=admin"
           }
         },
         {
           "name": "Get user by id",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/users/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "users", "1"]
-            }
+            "url": "{{baseUrl}}/api/users/1"
           }
         },
         {
@@ -181,17 +41,16 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"john_doe\",\n  \"email\": \"john@example.com\",\n  \"fullName\": \"John Doe\",\n  \"avatarUrl\": \"https://example.com/avatar.jpg\",\n  \"bio\": \"Art collector\"\n}"
+              "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@example.com\",\n  \"fullName\": \"Admin User\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/users",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "users"]
-            }
+            "url": "{{baseUrl}}/api/users"
           }
         },
         {
@@ -199,29 +58,23 @@
           "request": {
             "method": "PUT",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"john_doe\",\n  \"email\": \"john_new@example.com\",\n  \"fullName\": \"John Doe Updated\",\n  \"avatarUrl\": \"https://example.com/avatar-new.jpg\",\n  \"bio\": \"Updated bio\"\n}"
+              "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@example.com\",\n  \"fullName\": \"Administrator Updated\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/users/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "users", "1"]
-            }
+            "url": "{{baseUrl}}/api/users/1"
           }
         },
         {
           "name": "Delete user",
           "request": {
             "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/users/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "users", "1"]
-            }
+            "url": "{{baseUrl}}/api/users/1"
           }
         }
       ]
@@ -233,24 +86,21 @@
           "name": "Get all galleries",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/galleries",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "galleries"]
-            }
+            "url": "{{baseUrl}}/api/galleries"
+          }
+        },
+        {
+          "name": "Get galleries by ownerId",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/galleries?ownerId=1"
           }
         },
         {
           "name": "Get gallery by id",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/galleries/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "galleries", "1"]
-            }
+            "url": "{{baseUrl}}/api/galleries/1"
           }
         },
         {
@@ -258,17 +108,16 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Modern Art Hall\",\n  \"description\": \"Gallery for modern art\",\n  \"location\": \"Paris\",\n  \"ownerName\": \"john_doe\"\n}"
+              "raw": "{\n  \"name\": \"Amsterdam Gallery\",\n  \"description\": \"Contemporary and classic art gallery in Amsterdam\",\n  \"ownerName\": \"admin\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/galleries",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "galleries"]
-            }
+            "url": "{{baseUrl}}/api/galleries"
           }
         },
         {
@@ -276,29 +125,111 @@
           "request": {
             "method": "PUT",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Modern Art Hall Updated\",\n  \"description\": \"Updated gallery description\",\n  \"location\": \"London\",\n  \"ownerName\": \"john_doe\"\n}"
+              "raw": "{\n  \"name\": \"Amsterdam Gallery Updated\",\n  \"description\": \"Updated gallery description\",\n  \"ownerName\": \"admin\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/galleries/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "galleries", "1"]
-            }
+            "url": "{{baseUrl}}/api/galleries/1"
           }
         },
         {
           "name": "Delete gallery",
           "request": {
             "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/galleries/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "galleries", "1"]
-            }
+            "url": "{{baseUrl}}/api/galleries/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Paintings",
+      "item": [
+        {
+          "name": "Get all paintings",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/paintings"
+          }
+        },
+        {
+          "name": "Get paintings by artist",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/paintings?artist=Van Gogh"
+          }
+        },
+        {
+          "name": "Get paintings by gallery name",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/paintings/galleries?galleryName=Amsterdam Gallery"
+          }
+        },
+        {
+          "name": "Get painting by id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/paintings/1"
+          }
+        },
+        {
+          "name": "Create painting",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Starry Night\",\n  \"description\": \"One of Vincent van Gogh's most famous paintings.\",\n  \"artist\": \"Vincent van Gogh\",\n  \"year\": 1889,\n  \"price\": 1000000.0,\n  \"imageUrl\": \"https://example.com/starry-night.jpg\",\n  \"technique\": \"Oil on canvas\",\n  \"galleryName\": \"Amsterdam Gallery\",\n  \"tagNames\": [\"post-impressionism\", \"night\", \"masterpiece\"]\n}"
+            },
+            "url": "{{baseUrl}}/api/paintings"
+          }
+        },
+        {
+          "name": "Update painting",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Starry Night Updated\",\n  \"description\": \"Updated description.\",\n  \"artist\": \"Vincent van Gogh\",\n  \"year\": 1889,\n  \"price\": 1200000.0,\n  \"imageUrl\": \"https://example.com/starry-night.jpg\",\n  \"technique\": \"Oil on canvas\",\n  \"galleryName\": \"Amsterdam Gallery\",\n  \"tagNames\": [\"post-impressionism\", \"night\"]\n}"
+            },
+            "url": "{{baseUrl}}/api/paintings/1"
+          }
+        },
+        {
+          "name": "Add tag to painting",
+          "request": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/api/paintings/1/tags/masterpiece"
+          }
+        },
+        {
+          "name": "Remove tag from painting",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/paintings/1/tags/masterpiece"
+          }
+        },
+        {
+          "name": "Delete painting",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/paintings/1"
           }
         }
       ]
@@ -310,24 +241,21 @@
           "name": "Get all tags",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/tags",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "tags"]
-            }
+            "url": "{{baseUrl}}/api/tags"
+          }
+        },
+        {
+          "name": "Get tag by name",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/tags?name=masterpiece"
           }
         },
         {
           "name": "Get tag by id",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/tags/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "tags", "1"]
-            }
+            "url": "{{baseUrl}}/api/tags/1"
           }
         },
         {
@@ -335,17 +263,16 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"impressionism\",\n  \"description\": \"Impressionist style\"\n}"
+              "raw": "{\n  \"name\": \"masterpiece\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/tags",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "tags"]
-            }
+            "url": "{{baseUrl}}/api/tags"
           }
         },
         {
@@ -353,29 +280,23 @@
           "request": {
             "method": "PUT",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"impressionism-updated\",\n  \"description\": \"Updated description\"\n}"
+              "raw": "{\n  \"name\": \"classic-masterpiece\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/tags/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "tags", "1"]
-            }
+            "url": "{{baseUrl}}/api/tags/1"
           }
         },
         {
           "name": "Delete tag",
           "request": {
             "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/tags/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "tags", "1"]
-            }
+            "url": "{{baseUrl}}/api/tags/1"
           }
         }
       ]
@@ -387,24 +308,14 @@
           "name": "Get all exhibitions",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/exhibitions",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "exhibitions"]
-            }
+            "url": "{{baseUrl}}/api/exhibitions"
           }
         },
         {
           "name": "Get exhibition by id",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/exhibitions/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "exhibitions", "1"]
-            }
+            "url": "{{baseUrl}}/api/exhibitions/1"
           }
         },
         {
@@ -412,17 +323,16 @@
           "request": {
             "method": "POST",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Spring Expo\",\n  \"description\": \"Seasonal exhibition\",\n  \"startDate\": \"2026-05-01\",\n  \"endDate\": \"2026-05-30\"\n}"
+              "raw": "{\n  \"title\": \"Dutch Masters Revival\",\n  \"description\": \"Exhibition dedicated to the masterpieces of the Dutch Golden Age.\",\n  \"startDate\": \"2026-03-01T10:00:00\",\n  \"endDate\": \"2026-04-30T18:00:00\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/exhibitions",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "exhibitions"]
-            }
+            "url": "{{baseUrl}}/api/exhibitions"
           }
         },
         {
@@ -430,29 +340,37 @@
           "request": {
             "method": "PUT",
             "header": [
-              { "key": "Content-Type", "value": "application/json" }
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Spring Expo Updated\",\n  \"description\": \"Updated seasonal exhibition\",\n  \"startDate\": \"2026-05-05\",\n  \"endDate\": \"2026-06-05\"\n}"
+              "raw": "{\n  \"title\": \"Dutch Masters Revival Updated\",\n  \"description\": \"Updated exhibition description.\",\n  \"startDate\": \"2026-03-01T10:00:00\",\n  \"endDate\": \"2026-05-10T18:00:00\"\n}"
             },
-            "url": {
-              "raw": "{{baseUrl}}/api/exhibitions/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "exhibitions", "1"]
-            }
+            "url": "{{baseUrl}}/api/exhibitions/1"
+          }
+        },
+        {
+          "name": "Add painting to exhibition",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/exhibitions/1/paintings/1"
+          }
+        },
+        {
+          "name": "Remove painting from exhibition",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/exhibitions/1/paintings/1"
           }
         },
         {
           "name": "Delete exhibition",
           "request": {
             "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/exhibitions/1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "exhibitions", "1"]
-            }
+            "url": "{{baseUrl}}/api/exhibitions/1"
           }
         }
       ]
@@ -464,36 +382,21 @@
           "name": "N+1 demo",
           "request": {
             "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/demo/n-plus-1",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "demo", "n-plus-1"]
-            }
+            "url": "{{baseUrl}}/api/demo/n-plus-1"
           }
         },
         {
-          "name": "Create gallery without transaction",
+          "name": "Without transaction",
           "request": {
             "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/demo/without-transaction",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "demo", "without-transaction"]
-            }
+            "url": "{{baseUrl}}/api/demo/without-transaction"
           }
         },
         {
-          "name": "Create gallery with transaction",
+          "name": "With transaction",
           "request": {
             "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/demo/with-transaction",
-              "host": ["{{baseUrl}}"],
-              "path": ["api", "demo", "with-transaction"]
-            }
+            "url": "{{baseUrl}}/api/demo/with-transaction"
           }
         }
       ]
