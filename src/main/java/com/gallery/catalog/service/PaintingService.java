@@ -6,10 +6,14 @@ import com.gallery.catalog.model.Tag;
 import com.gallery.catalog.repository.GalleryRepository;
 import com.gallery.catalog.repository.PaintingRepository;
 import com.gallery.catalog.repository.TagRepository;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +30,8 @@ public class PaintingService {
     private final PaintingRepository paintingRepository;
     private final TagRepository tagRepository;
     private final GalleryRepository galleryRepository;
+
+    private final Map<PaintingCacheKey, List<PaintingDto>> cache = new HashMap<>();
 
     public PaintingService(
         PaintingRepository paintingRepository,
@@ -76,20 +82,7 @@ public class PaintingService {
         if (artist == null || artist.trim().isEmpty()) {
             return List.of();
         }
-
         return paintingRepository.findByArtistContainingIgnoreCase(artist.trim())
-            .stream()
-            .map(this::convertToDto)
-            .toList();
-    }
-
-    @Transactional(readOnly = true)
-    public List<PaintingDto> getPaintingsByGalleryName(String galleryName) {
-        if (galleryName == null || galleryName.trim().isEmpty()) {
-            return List.of();
-        }
-
-        return paintingRepository.findByGalleryName(galleryName.trim())
             .stream()
             .map(this::convertToDto)
             .toList();
@@ -103,27 +96,70 @@ public class PaintingService {
             .toList();
     }
 
+    // Пункт 1 — JPQL фильтрация по вложенной сущности Gallery
+    @Transactional(readOnly = true)
+    public List<PaintingDto> getPaintingsByGalleryName(String galleryName) {
+        return paintingRepository.findByGalleryName(galleryName.trim())
+            .stream()
+            .map(this::convertToDto)
+            .toList();
+    }
+
+    // Пункт 2 — Native query
+    @Transactional(readOnly = true)
+    public List<PaintingDto> getPaintingsByGalleryNameNative(String galleryName) {
+        return paintingRepository.findByGalleryNameNative(galleryName.trim())
+            .stream()
+            .map(this::convertToDto)
+            .toList();
+    }
+
+    // Пункт 3 — пагинация
+    @Transactional(readOnly = true)
+    public Page<PaintingDto> getPaintingsByGalleryNamePaged(
+        String galleryName, int page, int size
+    ) {
+        return paintingRepository
+            .findByGalleryNamePaged(galleryName.trim(), PageRequest.of(page, size))
+            .map(this::convertToDto);
+    }
+
+    // Пункт 4 — кэш с составным ключом (без вызова через this)
+    @Transactional(readOnly = true)
+    public List<PaintingDto> getPaintingsByGalleryNameCached(
+        String galleryName, int page, int size
+    ) {
+        PaintingCacheKey key = new PaintingCacheKey(galleryName, page, size);
+        if (cache.containsKey(key)) {
+            return cache.get(key);
+        }
+        List<PaintingDto> result = paintingRepository
+            .findByGalleryNamePaged(galleryName.trim(), PageRequest.of(page, size))
+            .stream()
+            .map(this::convertToDto)
+            .toList();
+        cache.put(key, result);
+        return result;
+    }
+
     @Transactional
     public PaintingDto createPainting(PaintingDto dto) {
         validatePaintingDto(dto);
-
         Painting painting = new Painting();
         updatePaintingFromDto(painting, dto);
-
         Painting saved = paintingRepository.save(painting);
+        cache.clear();
         return convertToDto(saved);
     }
 
     @Transactional
     public PaintingDto updatePainting(Long id, PaintingDto dto) {
         validatePaintingDto(dto);
-
         Painting painting = paintingRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND + id));
-
         updatePaintingFromDto(painting, dto);
-
         Painting updated = paintingRepository.save(painting);
+        cache.clear();
         return convertToDto(updated);
     }
 
@@ -144,10 +180,10 @@ public class PaintingService {
         if (painting.getTags() == null) {
             painting.setTags(new HashSet<>());
         }
-
         painting.getTags().add(tag);
 
         Painting updated = paintingRepository.save(painting);
+        cache.clear();
         return convertToDto(updated);
     }
 
@@ -164,6 +200,7 @@ public class PaintingService {
         }
 
         Painting updated = paintingRepository.save(painting);
+        cache.clear();
         return convertToDto(updated);
     }
 
@@ -173,6 +210,7 @@ public class PaintingService {
             throw new IllegalArgumentException(PAINTING_NOT_FOUND + id);
         }
         paintingRepository.deleteById(id);
+        cache.clear();
     }
 
     private void validatePaintingDto(PaintingDto dto) {
@@ -197,7 +235,9 @@ public class PaintingService {
 
     private void updatePaintingFromDto(Painting painting, PaintingDto dto) {
         painting.setTitle(dto.title().trim());
-        painting.setDescription(dto.description() != null ? dto.description().trim() : null);
+        painting.setDescription(
+            dto.description() != null ? dto.description().trim() : null
+        );
         painting.setArtist(dto.artist().trim());
         painting.setYear(dto.year());
         painting.setPrice(dto.price());

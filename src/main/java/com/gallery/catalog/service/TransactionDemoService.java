@@ -1,6 +1,6 @@
 package com.gallery.catalog.service;
 
-import com.gallery.catalog.exception.DemoTransactionException;
+import com.gallery.catalog.dto.GalleryDto;
 import com.gallery.catalog.model.Gallery;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.User;
@@ -13,12 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TransactionDemoService {
 
-    private static final String ARTIST_USERNAME_PREFIX = "artist_";
     private static final String ARTIST_EMAIL_DOMAIN = "@example.com";
-    private static final String GALLERY_NAME_PREFIX = "My Gallery ";
-    private static final String PAINTING_TITLE_PREFIX = "Masterpiece ";
-    private static final String TEST_ARTIST_NAME = "Test Artist";
-    private static final String TEST_GALLERY_DESCRIPTION = "Test Gallery Description";
 
     private final UserRepository userRepository;
     private final GalleryRepository galleryRepository;
@@ -34,53 +29,55 @@ public class TransactionDemoService {
         this.paintingRepository = paintingRepository;
     }
 
-    @Transactional(rollbackFor = DemoTransactionException.class)
-    public void createGalleryWithTransaction() {
-        User user = createUser();
-        Gallery gallery = createGallery(user);
-        createPainting(user, gallery);
+    @Transactional(rollbackFor = Exception.class)
+    public void createGalleryWithTransaction(GalleryDto dto) {
+        User user = createUser(dto);
+        Gallery gallery = createGallery(dto, user);
+        createPainting(gallery, user.getFullName());
 
-        throw new DemoTransactionException(
-            "Simulated error: transaction rolling back all data"
-        );
+        throw new RuntimeException("Simulated error with transaction");
     }
 
-    public void createGalleryWithoutTransaction() {
-        User user = createUser();
-        Gallery gallery = createGallery(user);
-        createPainting(user, gallery);
+    public void createGalleryWithoutTransaction(GalleryDto dto) {
+        User user = createUser(dto);
+        Gallery gallery = createGallery(dto, user);
+        createPainting(gallery, user.getFullName());
 
-        throw new DemoTransactionException(
-            "Simulated error: data already saved in database"
-        );
+        throw new RuntimeException("Simulated error without transaction");
     }
 
-    private User createUser() {
-        long currentTime = System.currentTimeMillis();
+    private User createUser(GalleryDto dto) {
+        long suffix = System.currentTimeMillis();
+        String ownerName = dto.ownerName() != null && !dto.ownerName().isBlank()
+            ? dto.ownerName().trim()
+            : "demo_owner";
 
         User user = new User();
-        user.setUsername(ARTIST_USERNAME_PREFIX + currentTime);
-        user.setEmail(ARTIST_USERNAME_PREFIX + currentTime + ARTIST_EMAIL_DOMAIN);
-        user.setFullName(TEST_ARTIST_NAME);
+        user.setUsername(ownerName + "_" + suffix);
+        user.setEmail(ownerName + suffix + ARTIST_EMAIL_DOMAIN);
+        user.setFullName(ownerName);
 
         return userRepository.save(user);
     }
 
-    private Gallery createGallery(User user) {
+    private Gallery createGallery(GalleryDto dto, User user) {
         Gallery gallery = new Gallery();
-        gallery.setName(GALLERY_NAME_PREFIX + System.currentTimeMillis());
-        gallery.setDescription(TEST_GALLERY_DESCRIPTION);
+        gallery.setName(dto.name() != null && !dto.name().isBlank()
+            ? dto.name().trim()
+            : "Demo Gallery " + System.currentTimeMillis());
+        gallery.setDescription(dto.description() != null ? dto.description().trim() : null);
         gallery.setOwner(user);
 
         return galleryRepository.save(gallery);
     }
 
-    private Painting createPainting(User user, Gallery gallery) {
+    private Painting createPainting(Gallery gallery, String artistName) {
         Painting painting = new Painting();
-        painting.setTitle(PAINTING_TITLE_PREFIX + System.currentTimeMillis());
-        painting.setArtist(user.getFullName());
+        painting.setTitle("TX Demo Painting " + System.currentTimeMillis());
+        painting.setArtist(artistName);
+        painting.setDescription("Created for transaction demo");
         painting.setYear(2024);
-        painting.setPrice(1_000_000.0);
+        painting.setPrice(1000.0);
         painting.setGallery(gallery);
 
         return paintingRepository.save(painting);

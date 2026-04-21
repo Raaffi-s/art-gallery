@@ -1,13 +1,14 @@
 package com.gallery.catalog.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,29 +16,35 @@ import java.util.List;
 @Table(name = "galleries")
 public class Gallery extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(length = 1000)
     private String description;
 
+    @Column(name = "demo_number", unique = true)
+    private Long demoNumber;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
-    @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "gallery")
     private List<Painting> paintings = new ArrayList<>();
 
     public Gallery() {
     }
 
-    public Gallery(String name, User owner) {
+    public Gallery(String name) {
         this.name = name;
-        this.owner = owner;
     }
 
+    @Override
+    @PrePersist
+    public void onCreate() {
+        setCreatedAt(LocalDateTime.now());
+    }
 
-    // Геттеры и сеттеры
     public String getName() {
         return name;
     }
@@ -52,6 +59,14 @@ public class Gallery extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getDemoNumber() {
+        return demoNumber;
+    }
+
+    public void setDemoNumber(Long demoNumber) {
+        this.demoNumber = demoNumber;
     }
 
     public User getOwner() {
@@ -75,6 +90,7 @@ public class Gallery extends BaseEntity {
         return "Gallery{"
             + "id=" + getId()
             + ", name='" + name + '\''
+            + ", demoNumber=" + demoNumber
             + '}';
     }
 }

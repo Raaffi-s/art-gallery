@@ -3,6 +3,7 @@ package com.gallery.catalog.controller;
 import com.gallery.catalog.dto.PaintingDto;
 import com.gallery.catalog.service.PaintingService;
 import java.util.List;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,11 +37,44 @@ public class PaintingController {
         return ResponseEntity.ok(paintingService.getAllPaintings());
     }
 
+    // Пункт 1 — JPQL фильтрация по галерее
     @GetMapping("/galleries")
     public ResponseEntity<List<PaintingDto>> getPaintingsByGalleryJpql(
         @RequestParam String galleryName
     ) {
         return ResponseEntity.ok(paintingService.getPaintingsByGalleryName(galleryName));
+    }
+
+    // Пункт 2 — Native query
+    @GetMapping("/galleries/native")
+    public ResponseEntity<List<PaintingDto>> getPaintingsByGalleryNative(
+        @RequestParam String galleryName
+    ) {
+        return ResponseEntity.ok(paintingService.getPaintingsByGalleryNameNative(galleryName));
+    }
+
+    // Пункт 3 — Пагинация
+    @GetMapping("/galleries/paged")
+    public ResponseEntity<Page<PaintingDto>> getPaintingsByGalleryPaged(
+        @RequestParam String galleryName,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
+        return ResponseEntity.ok(
+            paintingService.getPaintingsByGalleryNamePaged(galleryName, page, size)
+        );
+    }
+
+    // Пункт 4 — кэшированный запрос с HashMap-индексом
+    @GetMapping("/galleries/cached")
+    public ResponseEntity<List<PaintingDto>> getPaintingsByGalleryCached(
+        @RequestParam String galleryName,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
+        return ResponseEntity.ok(
+            paintingService.getPaintingsByGalleryNameCached(galleryName, page, size)
+        );
     }
 
     @GetMapping("/{id}")
@@ -70,6 +104,7 @@ public class PaintingController {
         return ResponseEntity.ok(paintingService.addTagToPainting(id, tagName));
     }
 
+    // Исправлено: tagName вместо tagId
     @DeleteMapping("/{id}/tags/{tagName}")
     public ResponseEntity<PaintingDto> removeTagFromPainting(
         @PathVariable Long id,
