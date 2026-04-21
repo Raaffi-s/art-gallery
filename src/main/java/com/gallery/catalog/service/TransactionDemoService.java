@@ -1,6 +1,8 @@
 package com.gallery.catalog.service;
 
 import com.gallery.catalog.dto.GalleryDto;
+import com.gallery.catalog.exception.DemoTransactionException;
+import com.gallery.catalog.exception.TransactionDemoException;
 import com.gallery.catalog.model.Gallery;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.User;
@@ -29,21 +31,23 @@ public class TransactionDemoService {
         this.paintingRepository = paintingRepository;
     }
 
+    // L38 — было: throw new RuntimeException(...)
     @Transactional(rollbackFor = Exception.class)
     public void createGalleryWithTransaction(GalleryDto dto) {
         User user = createUser(dto);
         Gallery gallery = createGallery(dto, user);
         createPainting(gallery, user.getFullName());
 
-        throw new RuntimeException("Simulated error with transaction");
+        throw new DemoTransactionException("Simulated error with transaction");
     }
 
+    // L46 — было: throw new RuntimeException(...)
     public void createGalleryWithoutTransaction(GalleryDto dto) {
         User user = createUser(dto);
         Gallery gallery = createGallery(dto, user);
         createPainting(gallery, user.getFullName());
 
-        throw new RuntimeException("Simulated error without transaction");
+        throw new TransactionDemoException("Simulated error without transaction");
     }
 
     private User createUser(GalleryDto dto) {
