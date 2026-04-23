@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PaintingService {
+
+    private static final Logger log = LoggerFactory.getLogger(PaintingService.class);
 
     private static final int CURRENT_YEAR = 2026;
     private static final int MIN_YEAR = 1000;
@@ -96,7 +100,6 @@ public class PaintingService {
             .toList();
     }
 
-    // Пункт 1 — JPQL фильтрация по вложенной сущности Gallery
     @Transactional(readOnly = true)
     public List<PaintingDto> getPaintingsByGalleryName(String galleryName) {
         return paintingRepository.findByGalleryName(galleryName.trim())
@@ -105,7 +108,6 @@ public class PaintingService {
             .toList();
     }
 
-    // Пункт 2 — Native query
     @Transactional(readOnly = true)
     public List<PaintingDto> getPaintingsByGalleryNameNative(String galleryName) {
         return paintingRepository.findByGalleryNameNative(galleryName.trim())
@@ -114,7 +116,6 @@ public class PaintingService {
             .toList();
     }
 
-    // Пункт 3 — пагинация
     @Transactional(readOnly = true)
     public Page<PaintingDto> getPaintingsByGalleryNamePaged(
         String galleryName, int page, int size
@@ -124,21 +125,46 @@ public class PaintingService {
             .map(this::convertToDto);
     }
 
-    // Пункт 4 — кэш с составным ключом (без вызова через this)
     @Transactional(readOnly = true)
     public List<PaintingDto> getPaintingsByGalleryNameCached(
         String galleryName, int page, int size
     ) {
-        PaintingCacheKey key = new PaintingCacheKey(galleryName, page, size);
+        String normalizedGalleryName = galleryName.trim();
+        PaintingCacheKey key = new PaintingCacheKey(normalizedGalleryName, page, size);
+
         if (cache.containsKey(key)) {
+            log.info(
+                "CACHE HIT: galleryName='{}', page={}, size={}",
+                normalizedGalleryName,
+                page,
+                size
+            );
             return cache.get(key);
         }
+
+        log.info(
+            "CACHE MISS: galleryName='{}', page={}, size={}",
+            normalizedGalleryName,
+            page,
+            size
+        );
+
         List<PaintingDto> result = paintingRepository
-            .findByGalleryNamePaged(galleryName.trim(), PageRequest.of(page, size))
+            .findByGalleryNamePaged(normalizedGalleryName, PageRequest.of(page, size))
             .stream()
             .map(this::convertToDto)
             .toList();
+
         cache.put(key, result);
+
+        log.info(
+            "CACHE PUT: galleryName='{}', page={}, size={}, resultCount={}",
+            normalizedGalleryName,
+            page,
+            size,
+            result.size()
+        );
+
         return result;
     }
 
@@ -149,6 +175,7 @@ public class PaintingService {
         updatePaintingFromDto(painting, dto);
         Painting saved = paintingRepository.save(painting);
         cache.clear();
+        log.info("CACHE CLEAR after createPainting");
         return convertToDto(saved);
     }
 
@@ -160,6 +187,7 @@ public class PaintingService {
         updatePaintingFromDto(painting, dto);
         Painting updated = paintingRepository.save(painting);
         cache.clear();
+        log.info("CACHE CLEAR after updatePainting: id={}", id);
         return convertToDto(updated);
     }
 
@@ -184,6 +212,7 @@ public class PaintingService {
 
         Painting updated = paintingRepository.save(painting);
         cache.clear();
+        log.info("CACHE CLEAR after addTagToPainting: paintingId={}, tagName={}", paintingId, normalizedTagName);
         return convertToDto(updated);
     }
 
@@ -201,6 +230,11 @@ public class PaintingService {
 
         Painting updated = paintingRepository.save(painting);
         cache.clear();
+        log.info(
+            "CACHE CLEAR after removeTagFromPainting: paintingId={}, tagName={}",
+            paintingId,
+            normalizedTagName
+        );
         return convertToDto(updated);
     }
 
@@ -211,6 +245,7 @@ public class PaintingService {
         }
         paintingRepository.deleteById(id);
         cache.clear();
+        log.info("CACHE CLEAR after deletePainting: id={}", id);
     }
 
     private void validatePaintingDto(PaintingDto dto) {
