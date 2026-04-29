@@ -18,11 +18,15 @@ public class LoggingAspect {
         long start = System.currentTimeMillis();
         String methodName = joinPoint.getSignature().toShortString();
 
-        Object result = joinPoint.proceed();
-
-        long executionTime = System.currentTimeMillis() - start;
-        log.info("Method {} executed in {} ms", methodName, executionTime);
-
-        return result;
+        try {
+            Object result = joinPoint.proceed();
+            long executionTime = System.currentTimeMillis() - start;
+            log.info("Method {} executed in {} ms", methodName, executionTime);
+            return result;
+        } catch (Throwable ex) {
+            long executionTime = System.currentTimeMillis() - start;
+            log.warn("Method {} failed after {} ms", methodName, executionTime);
+            throw ex;
+        }
     }
 }
