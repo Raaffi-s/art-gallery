@@ -2,6 +2,7 @@ package com.gallery.catalog.controller;
 
 import com.gallery.catalog.dto.UserDto;
 import com.gallery.catalog.service.UserService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,8 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers(
-        @RequestParam(required = false) String username) {
+        @RequestParam(required = false) String username
+    ) {
         if (username != null && !username.isEmpty()) {
             return ResponseEntity.ok(List.of(userService.getUserByUsername(username)));
         }
@@ -40,7 +42,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto dto) {
         UserDto created = userService.createUser(dto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
@@ -48,7 +50,8 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(
         @PathVariable Long id,
-        @RequestBody UserDto dto) {
+        @Valid @RequestBody UserDto dto
+    ) {
         return ResponseEntity.ok(userService.updateUser(id, dto));
     }
 

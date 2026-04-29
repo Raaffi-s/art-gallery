@@ -2,6 +2,7 @@ package com.gallery.catalog.controller;
 
 import com.gallery.catalog.dto.GalleryDto;
 import com.gallery.catalog.service.GalleryService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,8 @@ public class GalleryController {
 
     @GetMapping
     public ResponseEntity<List<GalleryDto>> getAllGalleries(
-        @RequestParam(required = false) Long ownerId) {
+        @RequestParam(required = false) Long ownerId
+    ) {
         if (ownerId != null) {
             return ResponseEntity.ok(galleryService.getGalleriesByOwner(ownerId));
         }
@@ -40,7 +42,7 @@ public class GalleryController {
     }
 
     @PostMapping
-    public ResponseEntity<GalleryDto> createGallery(@RequestBody GalleryDto dto) {
+    public ResponseEntity<GalleryDto> createGallery(@Valid @RequestBody GalleryDto dto) {
         GalleryDto created = galleryService.createGallery(dto);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
@@ -48,7 +50,8 @@ public class GalleryController {
     @PutMapping("/{id}")
     public ResponseEntity<GalleryDto> updateGallery(
         @PathVariable Long id,
-        @RequestBody GalleryDto dto) {
+        @Valid @RequestBody GalleryDto dto
+    ) {
         return ResponseEntity.ok(galleryService.updateGallery(id, dto));
     }
 

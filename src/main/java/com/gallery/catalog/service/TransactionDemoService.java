@@ -2,7 +2,6 @@ package com.gallery.catalog.service;
 
 import com.gallery.catalog.dto.GalleryDto;
 import com.gallery.catalog.exception.DemoTransactionException;
-import com.gallery.catalog.exception.TransactionDemoException;
 import com.gallery.catalog.model.Gallery;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.model.User;
@@ -31,7 +30,6 @@ public class TransactionDemoService {
         this.paintingRepository = paintingRepository;
     }
 
-    // L38 — было: throw new RuntimeException(...)
     @Transactional(rollbackFor = Exception.class)
     public void createGalleryWithTransaction(GalleryDto dto) {
         User user = createUser(dto);
@@ -41,13 +39,12 @@ public class TransactionDemoService {
         throw new DemoTransactionException("Simulated error with transaction");
     }
 
-    // L46 — было: throw new RuntimeException(...)
     public void createGalleryWithoutTransaction(GalleryDto dto) {
         User user = createUser(dto);
         Gallery gallery = createGallery(dto, user);
         createPainting(gallery, user.getFullName());
 
-        throw new TransactionDemoException("Simulated error without transaction");
+        throw new DemoTransactionException("Simulated error without transaction");
     }
 
     private User createUser(GalleryDto dto) {
@@ -66,9 +63,11 @@ public class TransactionDemoService {
 
     private Gallery createGallery(GalleryDto dto, User user) {
         Gallery gallery = new Gallery();
-        gallery.setName(dto.name() != null && !dto.name().isBlank()
-            ? dto.name().trim()
-            : "Demo Gallery " + System.currentTimeMillis());
+        gallery.setName(
+            dto.name() != null && !dto.name().isBlank()
+                ? dto.name().trim()
+                : "Demo Gallery " + System.currentTimeMillis()
+        );
         gallery.setDescription(dto.description() != null ? dto.description().trim() : null);
         gallery.setOwner(user);
 

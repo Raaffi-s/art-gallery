@@ -1,7 +1,7 @@
 package com.gallery.catalog.service;
 
-import com.gallery.catalog.dto.TagDto;
 import com.gallery.catalog.exception.TagNotFoundException;
+import com.gallery.catalog.dto.TagDto;
 import com.gallery.catalog.model.Tag;
 import com.gallery.catalog.repository.TagRepository;
 import java.util.List;

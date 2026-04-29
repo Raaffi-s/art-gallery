@@ -1,7 +1,7 @@
 package com.gallery.catalog.service;
 
-import com.gallery.catalog.dto.ExhibitionDto;
 import com.gallery.catalog.exception.ExhibitionNotFoundException;
+import com.gallery.catalog.dto.ExhibitionDto;
 import com.gallery.catalog.model.Exhibition;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.repository.ExhibitionRepository;

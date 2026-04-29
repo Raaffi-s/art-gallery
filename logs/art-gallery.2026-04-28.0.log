@@ -1,0 +1,74 @@
+2026-04-28 20:25:53 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-28 20:25:53 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 20964 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-28 20:25:53 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-28 20:25:53 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-28 20:25:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-28 20:25:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 5 JPA repository interfaces.
+2026-04-28 20:25:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-28 20:25:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-28 20:25:54 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-28 20:25:54 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-28 20:25:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-28 20:25:54 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1013 ms
+2026-04-28 20:25:54 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-28 20:25:54 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-28 20:25:54 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-28 20:25:54 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-28 20:25:54 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-28 20:25:54 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-28 20:25:54 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a2bb026
+2026-04-28 20:25:54 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-28 20:25:55 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-28 20:25:55 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-28 20:25:55 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-28 20:25:56 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-28 20:25:56 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-28 20:25:56 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-28 20:25:56 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 3.565 seconds (process running for 4.514)
+2026-04-28 20:35:00 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-28 20:35:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-28 20:35:00 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-28 20:35:02 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-28 20:35:02 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 21256 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-28 20:35:02 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-28 20:35:02 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-28 20:35:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-28 20:35:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59 ms. Found 5 JPA repository interfaces.
+2026-04-28 20:35:03 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-28 20:35:03 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-28 20:35:03 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-28 20:35:03 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-28 20:35:03 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-28 20:35:03 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1460 ms
+2026-04-28 20:35:03 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-28 20:35:03 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-28 20:35:03 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-28 20:35:03 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-28 20:35:04 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-28 20:35:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-28 20:35:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@12f51a65
+2026-04-28 20:35:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-28 20:35:05 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-28 20:35:05 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-28 20:35:06 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-28 20:35:06 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-28 20:35:07 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-28 20:35:07 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-28 20:35:07 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 5.833 seconds (process running for 6.377)
+2026-04-28 20:35:13 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-28 20:35:13 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-28 20:35:13 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-28 20:35:13 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (54 ms)
+2026-04-28 20:35:13 [http-nio-8080-exec-5] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-ui.css -> 304 (5 ms)
+2026-04-28 20:35:13 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.css -> 304 (5 ms)
+2026-04-28 20:35:13 [http-nio-8080-exec-8] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-ui-bundle.js -> 304 (4 ms)
+2026-04-28 20:35:13 [http-nio-8080-exec-6] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-ui-standalone-preset.js -> 304 (6 ms)
+2026-04-28 20:35:13 [http-nio-8080-exec-4] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (72 ms)
+2026-04-28 20:35:13 [http-nio-8080-exec-7] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (43 ms)
+2026-04-28 20:35:14 [http-nio-8080-exec-9] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 1205 ms
+2026-04-28 20:35:14 [http-nio-8080-exec-9] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (1252 ms)
+2026-04-28 20:35:17 [http-nio-8080-exec-10] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (4 ms)
+2026-04-28 20:35:17 [http-nio-8080-exec-3] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (4 ms)
+2026-04-28 20:35:17 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (2 ms)
+2026-04-28 20:35:17 [http-nio-8080-exec-5] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/favicon-32x32.png -> 304 (3 ms)
+2026-04-28 20:35:17 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (6 ms)

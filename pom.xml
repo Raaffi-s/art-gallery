@@ -2,7 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -25,36 +26,31 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- CheckStyle versions -->
         <checkstyle.version>10.12.0</checkstyle.version>
         <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
-
-        <sonar.cpd.exclusions>
-            **/dto/**,
-            **/model/**
-        </sonar.cpd.exclusions>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Web (REST API) -->
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Swagger / OpenAPI -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>2.5.0</version>
         </dependency>
 
-        <!-- Spring Boot Data JPA (работа с БД) -->
+        <!-- Spring Data JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- PostgreSQL Driver -->
+        <!-- PostgreSQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -67,7 +63,13 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
-        <!-- Testing -->
+        <!-- AOP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -77,12 +79,13 @@
 
     <build>
         <plugins>
+            <!-- Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <!-- CheckStyle Plugin (Google Style) -->
+            <!-- Checkstyle -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -98,7 +101,7 @@
                     <configLocation>google_checks.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>false</failsOnError>
-                    <linkXRef>false</linkXRef>
+                    <failOnViolation>false</failOnViolation>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <violationSeverity>warning</violationSeverity>
                     <excludes>**/exception/**,**/dto/BaseDto.java,**/model/BaseEntity.java</excludes>
@@ -114,7 +117,7 @@
                 </executions>
             </plugin>
 
-            <!-- Maven Compiler Plugin (без Lombok) -->
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -126,4 +129,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
