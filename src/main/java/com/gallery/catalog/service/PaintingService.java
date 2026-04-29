@@ -133,21 +133,11 @@ public class PaintingService {
         PaintingCacheKey key = new PaintingCacheKey(normalizedGalleryName, page, size);
 
         if (cache.containsKey(key)) {
-            log.info(
-                "CACHE HIT: galleryName='{}', page={}, size={}",
-                normalizedGalleryName,
-                page,
-                size
-            );
+            log.info("CACHE HIT for paged paintings lookup");
             return cache.get(key);
         }
 
-        log.info(
-            "CACHE MISS: galleryName='{}', page={}, size={}",
-            normalizedGalleryName,
-            page,
-            size
-        );
+        log.info("CACHE MISS for paged paintings lookup");
 
         List<PaintingDto> result = paintingRepository
             .findByGalleryNamePaged(normalizedGalleryName, PageRequest.of(page, size))
@@ -157,13 +147,7 @@ public class PaintingService {
 
         cache.put(key, result);
 
-        log.info(
-            "CACHE PUT: galleryName='{}', page={}, size={}, resultCount={}",
-            normalizedGalleryName,
-            page,
-            size,
-            result.size()
-        );
+        log.info("CACHE PUT for paged paintings lookup, resultCount={}", result.size());
 
         return result;
     }
@@ -212,7 +196,7 @@ public class PaintingService {
 
         Painting updated = paintingRepository.save(painting);
         cache.clear();
-        log.info("CACHE CLEAR after addTagToPainting: paintingId={}, tagName={}", paintingId, normalizedTagName);
+        log.info("CACHE CLEAR after addTagToPainting: paintingId={}", paintingId);
         return convertToDto(updated);
     }
 
@@ -230,11 +214,7 @@ public class PaintingService {
 
         Painting updated = paintingRepository.save(painting);
         cache.clear();
-        log.info(
-            "CACHE CLEAR after removeTagFromPainting: paintingId={}, tagName={}",
-            paintingId,
-            normalizedTagName
-        );
+        log.info("CACHE CLEAR after removeTagFromPainting: paintingId={}", paintingId);
         return convertToDto(updated);
     }
 
