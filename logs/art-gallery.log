@@ -62,3 +62,1390 @@
 2026-04-29 17:04:50 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-04-29 17:04:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-04-29 17:04:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:04:51 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:04:51 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 19348 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:04:51 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:04:51 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:04:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:04:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:04:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:04:52 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:04:52 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:04:52 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:04:52 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:04:52 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 719 ms
+2026-04-29 17:04:52 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:04:52 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:04:52 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:04:52 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:04:52 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:04:52 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:04:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6f289728
+2026-04-29 17:04:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:04:53 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:04:53 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:04:53 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:04:54 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:04:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:04:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:04:54 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 2.845 seconds (process running for 3.115)
+2026-04-29 17:06:09 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:06:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:06:09 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:06:10 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:06:10 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 28656 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:06:10 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:06:10 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:06:11 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:06:11 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:06:11 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:06:11 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:06:11 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:06:11 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:06:11 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:06:11 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 710 ms
+2026-04-29 17:06:11 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:06:11 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:06:11 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:06:11 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:06:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:06:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:06:12 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3f0c6b3c
+2026-04-29 17:06:12 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:06:12 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:06:12 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:06:12 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:06:13 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:06:13 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:06:13 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:06:13 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 2.904 seconds (process running for 3.199)
+2026-04-29 17:09:05 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-29 17:09:05 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-29 17:09:05 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-04-29 17:09:05 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (25 ms)
+2026-04-29 17:09:05 [http-nio-8080-exec-8] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (29 ms)
+2026-04-29 17:09:05 [http-nio-8080-exec-9] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (15 ms)
+2026-04-29 17:09:06 [http-nio-8080-exec-4] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 423 ms
+2026-04-29 17:09:06 [http-nio-8080-exec-4] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (453 ms)
+2026-04-29 17:22:03 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:22:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:22:03 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:22:05 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:22:05 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 24496 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:22:05 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:22:05 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:22:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:22:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:22:05 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:22:05 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:22:05 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:22:05 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:22:05 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:22:05 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 702 ms
+2026-04-29 17:22:05 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:22:05 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:22:05 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:22:05 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:22:06 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:22:06 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:22:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5871a482
+2026-04-29 17:22:06 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:22:06 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:22:06 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:22:06 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:22:07 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:22:07 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:22:07 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 2.767 seconds (process running for 3.028)
+2026-04-29 17:22:07 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:22:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:22:07 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:22:08 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:22:08 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 17204 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:22:08 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:22:08 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:22:09 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:22:09 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:22:09 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:22:09 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:22:09 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:22:09 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:22:09 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:22:09 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 722 ms
+2026-04-29 17:22:09 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:22:09 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:22:09 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:22:09 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:22:09 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:22:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:22:10 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7019d619
+2026-04-29 17:22:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:22:10 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:22:10 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:22:10 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:22:11 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:22:11 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:22:11 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:22:11 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 2.841 seconds (process running for 3.127)
+2026-04-29 17:22:11 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-29 17:22:11 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-29 17:22:11 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-29 17:22:11 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (16 ms)
+2026-04-29 17:22:11 [http-nio-8080-exec-3] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (24 ms)
+2026-04-29 17:22:11 [http-nio-8080-exec-4] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (17 ms)
+2026-04-29 17:22:11 [http-nio-8080-exec-2] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 372 ms
+2026-04-29 17:22:11 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (389 ms)
+2026-04-29 17:25:50 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:25:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:25:50 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:25:52 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:25:52 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 26684 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:25:52 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:25:52 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:25:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:25:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:25:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:25:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:25:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:25:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:25:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:25:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 742 ms
+2026-04-29 17:25:53 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:25:53 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:25:53 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:25:53 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:25:53 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:25:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:25:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@531ec2ca
+2026-04-29 17:25:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:25:54 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:25:54 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:25:54 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:25:55 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:25:55 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:25:55 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:25:55 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 2.934 seconds (process running for 3.201)
+2026-04-29 17:25:58 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-29 17:25:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-29 17:25:58 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-04-29 17:25:58 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (16 ms)
+2026-04-29 17:25:58 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (28 ms)
+2026-04-29 17:25:58 [http-nio-8080-exec-3] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (11 ms)
+2026-04-29 17:25:58 [http-nio-8080-exec-4] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 373 ms
+2026-04-29 17:25:58 [http-nio-8080-exec-4] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (387 ms)
+2026-04-29 17:29:24 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:29:24 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:29:25 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:29:26 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:29:26 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 31144 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:29:26 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:29:26 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:29:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:29:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:29:27 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:29:27 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:29:27 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:29:27 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:29:27 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:29:27 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 698 ms
+2026-04-29 17:29:27 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:29:27 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:29:27 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:29:27 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:29:27 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:29:27 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:29:27 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@531ec2ca
+2026-04-29 17:29:27 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:29:28 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:29:28 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:29:28 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:29:29 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:29:29 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:29:29 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:29:29 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 2.741 seconds (process running for 2.999)
+2026-04-29 17:29:56 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-29 17:29:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-29 17:29:56 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-04-29 17:29:56 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (18 ms)
+2026-04-29 17:29:56 [http-nio-8080-exec-3] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (22 ms)
+2026-04-29 17:29:56 [http-nio-8080-exec-10] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (13 ms)
+2026-04-29 17:29:57 [http-nio-8080-exec-6] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 408 ms
+2026-04-29 17:29:57 [http-nio-8080-exec-6] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (424 ms)
+2026-04-29 17:32:42 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:32:42 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:32:42 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:32:48 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:32:48 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 452 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:32:48 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:32:48 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:32:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:32:48 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:32:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:32:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:32:48 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:32:48 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:32:48 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:32:48 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 717 ms
+2026-04-29 17:32:48 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:32:48 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:32:49 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:32:49 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:32:49 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:32:49 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:32:49 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@300bb303
+2026-04-29 17:32:49 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:32:49 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:32:49 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:32:50 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:32:50 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:32:50 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:32:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:32:50 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 2.767 seconds (process running for 3.64)
+2026-04-29 17:32:52 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-29 17:32:52 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-29 17:32:52 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-29 17:32:52 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (20 ms)
+2026-04-29 17:32:52 [http-nio-8080-exec-4] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (26 ms)
+2026-04-29 17:32:52 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (13 ms)
+2026-04-29 17:32:53 [http-nio-8080-exec-3] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 391 ms
+2026-04-29 17:32:53 [http-nio-8080-exec-3] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (407 ms)
+2026-04-29 17:34:32 [http-nio-8080-exec-7] INFO  c.g.c.logging.RequestLoggingFilter - HTTP POST /api/tags -> 500 (13 ms)
+2026-04-29 17:35:09 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        t1_0.id,
+        t1_0.created_at,
+        t1_0.description,
+        t1_0.name 
+    from
+        tags t1_0 
+    where
+        t1_0.name=?
+2026-04-29 17:35:09 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        tags
+        (created_at,description,name) 
+    values
+        (?,?,?)
+2026-04-29 17:35:09 [http-nio-8080-exec-8] INFO  c.g.catalog.aspect.LoggingAspect - Method TagService.createTag(..) executed in 78 ms
+2026-04-29 17:35:09 [http-nio-8080-exec-8] INFO  c.g.c.logging.RequestLoggingFilter - HTTP POST /api/tags -> 201 (93 ms)
+2026-04-29 17:35:16 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        t1_0.id,
+        t1_0.created_at,
+        t1_0.description,
+        t1_0.name 
+    from
+        tags t1_0 
+    where
+        t1_0.name=?
+2026-04-29 17:35:16 [http-nio-8080-exec-9] WARN  c.g.catalog.aspect.LoggingAspect - Method TagService.createTag(..) failed after 6 ms
+2026-04-29 17:35:16 [http-nio-8080-exec-9] INFO  c.g.c.logging.RequestLoggingFilter - HTTP POST /api/tags -> 400 (8 ms)
+2026-04-29 17:38:59 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.artist,
+        p1_0.created_at,
+        p1_0.description,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name,
+        g1_0.owner_id,
+        p1_0.image_url,
+        p1_0.price,
+        t1_0.painting_id,
+        t1_1.id,
+        t1_1.created_at,
+        t1_1.description,
+        t1_1.name,
+        p1_0.technique,
+        p1_0.title,
+        p1_0.year 
+    from
+        paintings p1_0 
+    left join
+        galleries g1_0 
+            on g1_0.id=p1_0.gallery_id 
+    left join
+        (painting_tags t1_0 
+    join
+        tags t1_1 
+            on t1_1.id=t1_0.tag_id) 
+                on p1_0.id=t1_0.painting_id 
+        where
+            p1_0.id=?
+2026-04-29 17:38:59 [http-nio-8080-exec-10] WARN  c.g.catalog.aspect.LoggingAspect - Method PaintingService.addTagToPainting(..) failed after 16 ms
+2026-04-29 17:38:59 [http-nio-8080-exec-10] INFO  c.g.c.logging.RequestLoggingFilter - HTTP PATCH /api/paintings/858595/tags/%D1%88%D1%81%D0%BE%D0%B2%D0%B7%D1%89%D0%B2%D0%B7%D1%89%D0%B2%D0%B0 -> 400 (19 ms)
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.username 
+    from
+        users u1_0
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:40:31 [http-nio-8080-exec-1] INFO  c.g.catalog.aspect.LoggingAspect - Method UserService.getAllUsers() executed in 22 ms
+2026-04-29 17:40:31 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /api/users -> 200 (26 ms)
+2026-04-29 17:41:14 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        users
+        (avatar_url,bio,created_at,email,full_name,username) 
+    values
+        (?,?,?,?,?,?)
+2026-04-29 17:41:14 [http-nio-8080-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23505
+2026-04-29 17:41:14 [http-nio-8080-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ОШИБКА: duplicate key value violates unique constraint "uk_r43af9ap4edm43mmtq01oddj6"
+  Подробности: Key (username)=(Raaffi) already exists.
+2026-04-29 17:41:14 [http-nio-8080-exec-2] WARN  c.g.catalog.aspect.LoggingAspect - Method UserService.createUser(..) failed after 12 ms
+2026-04-29 17:41:14 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP POST /api/users -> 500 (50 ms)
+2026-04-29 17:46:47 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:46:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:46:47 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:46:50 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:46:50 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 19304 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:46:50 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:46:50 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:46:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:46:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 40 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:46:51 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:46:51 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:46:51 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:46:51 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:46:51 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:46:51 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1130 ms
+2026-04-29 17:46:51 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:46:51 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:46:51 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:46:51 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:46:51 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:46:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:46:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@377dbc50
+2026-04-29 17:46:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:46:52 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:46:52 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:46:53 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:46:53 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:46:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:46:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:46:54 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 4.416 seconds (process running for 4.816)
+2026-04-29 17:47:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-29 17:47:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-29 17:47:02 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-29 17:47:02 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (31 ms)
+2026-04-29 17:47:02 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (33 ms)
+2026-04-29 17:47:02 [http-nio-8080-exec-3] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (19 ms)
+2026-04-29 17:47:02 [http-nio-8080-exec-4] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 700 ms
+2026-04-29 17:47:02 [http-nio-8080-exec-4] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (727 ms)
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.username 
+    from
+        users u1_0
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:47:21 [http-nio-8080-exec-5] INFO  c.g.catalog.aspect.LoggingAspect - Method UserService.getAllUsers() executed in 122 ms
+2026-04-29 17:47:21 [http-nio-8080-exec-5] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /api/users -> 200 (137 ms)
+2026-04-29 17:47:45 [http-nio-8080-exec-6] INFO  c.g.c.logging.RequestLoggingFilter - HTTP POST /api/users -> 400 (62 ms)
+2026-04-29 17:48:00 [http-nio-8080-exec-7] INFO  c.g.c.logging.RequestLoggingFilter - HTTP POST /api/users -> 400 (2 ms)
+2026-04-29 17:52:46 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:52:46 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-04-29 17:52:46 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-04-29 17:52:49 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-29 17:52:49 [main] INFO  c.gallery.catalog.CatalogApplication - Starting CatalogApplication using Java 25.0.2 with PID 12384 (C:\Users\sveta\IdeaProjects\art-gallery\target\classes started by sveta in C:\Users\sveta\IdeaProjects\art-gallery)
+2026-04-29 17:52:49 [main] DEBUG c.gallery.catalog.CatalogApplication - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-29 17:52:49 [main] INFO  c.gallery.catalog.CatalogApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-29 17:52:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-29 17:52:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 52 ms. Found 5 JPA repository interfaces.
+2026-04-29 17:52:50 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2026-04-29 17:52:50 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:52:50 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-29 17:52:50 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-29 17:52:50 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-29 17:52:50 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1236 ms
+2026-04-29 17:52:51 [main] DEBUG c.g.c.logging.RequestLoggingFilter - Filter 'requestLoggingFilter' configured for use
+2026-04-29 17:52:51 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-29 17:52:51 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-29 17:52:51 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2026-04-29 17:52:51 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-29 17:52:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-29 17:52:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@531ec2ca
+2026-04-29 17:52:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-29 17:52:52 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-29 17:52:52 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-29 17:52:52 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-29 17:52:53 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-29 17:52:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-29 17:52:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2026-04-29 17:52:54 [main] INFO  c.gallery.catalog.CatalogApplication - Started CatalogApplication in 4.857 seconds (process running for 5.286)
+2026-04-29 17:52:54 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-29 17:52:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-29 17:52:54 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-29 17:52:54 [http-nio-8080-exec-1] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/index.html -> 304 (27 ms)
+2026-04-29 17:52:54 [http-nio-8080-exec-2] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /swagger-ui/swagger-initializer.js -> 200 (29 ms)
+2026-04-29 17:52:54 [http-nio-8080-exec-3] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs/swagger-config -> 200 (17 ms)
+2026-04-29 17:52:55 [http-nio-8080-exec-4] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 823 ms
+2026-04-29 17:52:55 [http-nio-8080-exec-4] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /v3/api-docs -> 200 (855 ms)
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.username 
+    from
+        users u1_0
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:54:19 [http-nio-8080-exec-8] INFO  c.g.catalog.aspect.LoggingAspect - Method UserService.getAllUsers() executed in 112 ms
+2026-04-29 17:54:19 [http-nio-8080-exec-8] INFO  c.g.c.logging.RequestLoggingFilter - HTTP GET /api/users -> 200 (126 ms)
+2026-04-29 17:55:16 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.avatar_url,
+        u1_0.bio,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2026-04-29 17:55:16 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    select
+        g1_0.owner_id,
+        g1_0.id,
+        g1_0.created_at,
+        g1_0.demo_number,
+        g1_0.description,
+        g1_0.name 
+    from
+        galleries g1_0 
+    where
+        g1_0.owner_id=?
+2026-04-29 17:55:16 [http-nio-8080-exec-9] INFO  c.g.catalog.aspect.LoggingAspect - Method UserService.updateUser(..) executed in 18 ms
+2026-04-29 17:55:16 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - 
+    update
+        users 
+    set
+        avatar_url=?,
+        bio=?,
+        created_at=?,
+        email=?,
+        full_name=?,
+        username=? 
+    where
+        id=?
+2026-04-29 17:55:16 [http-nio-8080-exec-9] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 0, SQLState: 23505
+2026-04-29 17:55:16 [http-nio-8080-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ОШИБКА: duplicate key value violates unique constraint "uk_r43af9ap4edm43mmtq01oddj6"
+  Подробности: Key (username)=(john_doe) already exists.
+2026-04-29 17:55:16 [http-nio-8080-exec-9] INFO  c.g.c.logging.RequestLoggingFilter - HTTP PUT /api/users/4 -> 409 (123 ms)
+2026-04-29 18:16:09 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m46s346ms720µs200ns).

@@ -1,0 +1,2 @@
+2026-04-29 17:41:14 [http-nio-8080-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - ОШИБКА: duplicate key value violates unique constraint "uk_r43af9ap4edm43mmtq01oddj6"
+  Подробности: Key (username)=(Raaffi) already exists.
