@@ -27,6 +27,13 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request);
     }
 
+    @ExceptionHandler(TagNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleTagNotFound(
+        TagNotFoundException ex, HttpServletRequest request
+    ) {
+        return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request);
+    }
+
     @ExceptionHandler(ExhibitionNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleExhibitionNotFound(
         ExhibitionNotFoundException ex, HttpServletRequest request

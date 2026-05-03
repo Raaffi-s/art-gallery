@@ -9,47 +9,24 @@ import java.util.Set;
 @Schema(description = "DTO выставки")
 public record ExhibitionDto(
 
-    @Schema(
-        description = "Идентификатор выставки",
-        example = "1",
-        accessMode = Schema.AccessMode.READ_ONLY
-    )
+    @Schema(description = "Уникальный идентификатор выставки", example = "1")
     Long id,
 
-    @Schema(
-        description = "Название выставки",
-        example = "Шедевры Ренессанса"
-    )
+    @Schema(description = "Название выставки", example = "Spring Exhibition")
     String title,
 
-    @Schema(
-        description = "Описание выставки",
-        example = "Коллекция известных произведений эпохи Возрождения"
-    )
+    @Schema(description = "Описание выставки", example = "Demo exhibition for bulk operations")
     String description,
 
-    @Schema(
-        description = "Дата и время начала выставки",
-        example = "2026-05-01T10:00:00"
-    )
+    @Schema(description = "Дата и время начала выставки", example = "2026-05-04T10:00:00")
     LocalDateTime startDate,
 
-    @Schema(
-        description = "Дата и время окончания выставки",
-        example = "2026-05-31T18:00:00"
-    )
+    @Schema(description = "Дата и время окончания выставки", example = "2026-05-10T18:00:00")
     LocalDateTime endDate,
 
-    @Schema(
-        description = "Названия картин, представленных на выставке",
-        example = "[\"Мона Лиза\", \"Тайная вечеря\"]"
-    )
+    @Schema(description = "Названия картин, входящих в выставку")
     Set<String> paintingTitles,
 
-    @Schema(
-        description = "Количество картин на выставке",
-        example = "2"
-    )
+    @Schema(description = "Количество картин в выставке", example = "2")
     Integer paintingsCount
-
 ) {}

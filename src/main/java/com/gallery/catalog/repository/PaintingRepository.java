@@ -31,7 +31,6 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
     @EntityGraph(attributePaths = {"gallery", "tags"})
     Optional<Painting> findWithDetailsById(Long id);
 
-    // Пункт 1 — JPQL фильтрация по вложенной сущности
     @Query("""
         SELECT DISTINCT p
         FROM Painting p
@@ -41,7 +40,6 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
         """)
     List<Painting> findByGalleryName(@Param("galleryName") String galleryName);
 
-    // Пункт 2 — Native query аналог
     @Query(
         value = """
             SELECT DISTINCT p.*
@@ -53,7 +51,6 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
     )
     List<Painting> findByGalleryNameNative(@Param("galleryName") String galleryName);
 
-    // Пункт 3 — пагинация
     @Query(
         value = "SELECT p FROM Painting p LEFT JOIN p.gallery g WHERE LOWER(g.name) = LOWER(:galleryName)",
         countQuery = "SELECT COUNT(p) FROM Painting p LEFT JOIN p.gallery g WHERE LOWER(g.name) = LOWER(:galleryName)"

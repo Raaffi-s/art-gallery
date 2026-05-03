@@ -1,11 +1,13 @@
 package com.gallery.catalog.service;
 
-import com.gallery.catalog.exception.ExhibitionNotFoundException;
+import com.gallery.catalog.dto.BulkPaintingIdsDto;
 import com.gallery.catalog.dto.ExhibitionDto;
+import com.gallery.catalog.exception.ExhibitionNotFoundException;
 import com.gallery.catalog.model.Exhibition;
 import com.gallery.catalog.model.Painting;
 import com.gallery.catalog.repository.ExhibitionRepository;
 import com.gallery.catalog.repository.PaintingRepository;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,8 +20,10 @@ public class ExhibitionService {
     private final ExhibitionRepository exhibitionRepository;
     private final PaintingRepository paintingRepository;
 
-    public ExhibitionService(ExhibitionRepository exhibitionRepository,
-                             PaintingRepository paintingRepository) {
+    public ExhibitionService(
+        ExhibitionRepository exhibitionRepository,
+        PaintingRepository paintingRepository
+    ) {
         this.exhibitionRepository = exhibitionRepository;
         this.paintingRepository = paintingRepository;
     }
@@ -44,6 +48,56 @@ public class ExhibitionService {
             paintingTitles,
             paintingsCount
         );
+    }
+
+    @Transactional
+    public ExhibitionDto addPaintingsToExhibitionBulk(Long exhibitionId, BulkPaintingIdsDto dto) {
+        Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
+            .orElseThrow(() -> new ExhibitionNotFoundException(exhibitionId.toString()));
+
+        if (dto == null || dto.paintingIds() == null || dto.paintingIds().isEmpty()) {
+            throw new IllegalArgumentException("Painting IDs list must not be empty");
+        }
+
+        List<Painting> paintings = dto.paintingIds().stream()
+            .map(id -> paintingRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Painting not found with id: " + id)))
+            .toList();
+
+        if (exhibition.getPaintings() == null) {
+            exhibition.setPaintings(new HashSet<>());
+        }
+
+        exhibition.getPaintings().addAll(paintings);
+
+        Exhibition updated = exhibitionRepository.save(exhibition);
+        return convertToDto(updated);
+    }
+
+    public ExhibitionDto addPaintingsToExhibitionBulkWithoutTransactional(
+        Long exhibitionId,
+        BulkPaintingIdsDto dto
+    ) {
+        Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
+            .orElseThrow(() -> new ExhibitionNotFoundException(exhibitionId.toString()));
+
+        if (dto == null || dto.paintingIds() == null || dto.paintingIds().isEmpty()) {
+            throw new IllegalArgumentException("Painting IDs list must not be empty");
+        }
+
+        if (exhibition.getPaintings() == null) {
+            exhibition.setPaintings(new HashSet<>());
+        }
+
+        for (Long paintingId : dto.paintingIds()) {
+            Painting painting = paintingRepository.findById(paintingId)
+                .orElseThrow(() -> new IllegalArgumentException("Painting not found with id: " + paintingId));
+
+            exhibition.getPaintings().add(painting);
+            exhibitionRepository.save(exhibition);
+        }
+
+        return convertToDto(exhibition);
     }
 
     @Transactional(readOnly = true)
@@ -73,8 +127,7 @@ public class ExhibitionService {
                 .map(title -> paintingRepository.findAll().stream()
                     .filter(p -> p.getTitle().equalsIgnoreCase(title))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException(
-                        "Painting not found: " + title)))
+                    .orElseThrow(() -> new IllegalArgumentException("Painting not found: " + title)))
                 .collect(Collectors.toSet());
             exhibition.setPaintings(paintings);
         }
@@ -111,6 +164,10 @@ public class ExhibitionService {
             .orElseThrow(() -> new IllegalArgumentException(
                 "Painting not found with id: " + paintingId));
 
+        if (exhibition.getPaintings() == null) {
+            exhibition.setPaintings(new HashSet<>());
+        }
+
         exhibition.getPaintings().add(painting);
         return convertToDto(exhibitionRepository.save(exhibition));
     }
@@ -120,7 +177,10 @@ public class ExhibitionService {
         Exhibition exhibition = exhibitionRepository.findById(exhibitionId)
             .orElseThrow(() -> new ExhibitionNotFoundException(exhibitionId.toString()));
 
-        exhibition.getPaintings().removeIf(p -> p.getId().equals(paintingId));
+        if (exhibition.getPaintings() != null) {
+            exhibition.getPaintings().removeIf(p -> p.getId().equals(paintingId));
+        }
+
         return convertToDto(exhibitionRepository.save(exhibition));
     }
 
@@ -136,8 +196,7 @@ public class ExhibitionService {
 
     private void updateExhibitionFromDto(Exhibition exhibition, ExhibitionDto dto) {
         exhibition.setTitle(dto.title().trim());
-        exhibition.setDescription(
-            dto.description() != null ? dto.description().trim() : null);
+        exhibition.setDescription(dto.description() != null ? dto.description().trim() : null);
         exhibition.setStartDate(dto.startDate());
         exhibition.setEndDate(dto.endDate());
     }
