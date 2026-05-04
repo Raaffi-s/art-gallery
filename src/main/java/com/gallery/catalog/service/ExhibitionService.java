@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ExhibitionService {
 
+    private static final String PAINTING_NOT_FOUND_MESSAGE = "Painting not found with id: ";
+
     private final ExhibitionRepository exhibitionRepository;
     private final PaintingRepository paintingRepository;
 
@@ -61,7 +63,7 @@ public class ExhibitionService {
 
         List<Painting> paintings = dto.paintingIds().stream()
             .map(id -> paintingRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Painting not found with id: " + id)))
+                .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND_MESSAGE + id)))
             .toList();
 
         if (exhibition.getPaintings() == null) {
@@ -91,7 +93,7 @@ public class ExhibitionService {
 
         for (Long paintingId : dto.paintingIds()) {
             Painting painting = paintingRepository.findById(paintingId)
-                .orElseThrow(() -> new IllegalArgumentException("Painting not found with id: " + paintingId));
+                .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND_MESSAGE + paintingId));
 
             exhibition.getPaintings().add(painting);
             exhibitionRepository.save(exhibition);
@@ -161,8 +163,7 @@ public class ExhibitionService {
             .orElseThrow(() -> new ExhibitionNotFoundException(exhibitionId.toString()));
 
         Painting painting = paintingRepository.findById(paintingId)
-            .orElseThrow(() -> new IllegalArgumentException(
-                "Painting not found with id: " + paintingId));
+            .orElseThrow(() -> new IllegalArgumentException(PAINTING_NOT_FOUND_MESSAGE + paintingId));
 
         if (exhibition.getPaintings() == null) {
             exhibition.setPaintings(new HashSet<>());

@@ -5,7 +5,6 @@ import com.gallery.catalog.exception.TagNotFoundException;
 import com.gallery.catalog.model.Tag;
 import com.gallery.catalog.repository.TagRepository;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,11 +17,22 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
+    private TagDto convertToDto(Tag tag) {
+        return new TagDto(
+            tag.getId(),
+            tag.getName()
+        );
+    }
+
+    private void updateTagFromDto(Tag tag, TagDto dto) {
+        tag.setName(dto.name().trim());
+    }
+
     @Transactional(readOnly = true)
     public List<TagDto> getAllTags() {
         return tagRepository.findAll().stream()
             .map(this::convertToDto)
-            .collect(Collectors.toList());
+            .toList();
     }
 
     @Transactional(readOnly = true)
@@ -34,28 +44,31 @@ public class TagService {
 
     @Transactional(readOnly = true)
     public TagDto getTagByName(String name) {
-        Tag tag = tagRepository.findByName(name)
+        Tag tag = tagRepository.findByNameIgnoreCase(name)
             .orElseThrow(() -> new TagNotFoundException("Tag not found with name: " + name));
         return convertToDto(tag);
     }
 
     @Transactional
     public TagDto createTag(TagDto dto) {
+        validateTagDto(dto);
+
         Tag tag = new Tag();
-        tag.setName(dto.name());
-        tag.setDescription(dto.description());
-        Tag saved = tagRepository.save(tag);
-        return convertToDto(saved);
+        updateTagFromDto(tag, dto);
+
+        return convertToDto(tagRepository.save(tag));
     }
 
     @Transactional
     public TagDto updateTag(Long id, TagDto dto) {
+        validateTagDto(dto);
+
         Tag tag = tagRepository.findById(id)
             .orElseThrow(() -> new TagNotFoundException("Tag not found with id: " + id));
-        tag.setName(dto.name());
-        tag.setDescription(dto.description());
-        Tag updated = tagRepository.save(tag);
-        return convertToDto(updated);
+
+        updateTagFromDto(tag, dto);
+
+        return convertToDto(tagRepository.save(tag));
     }
 
     @Transactional
@@ -66,7 +79,9 @@ public class TagService {
         tagRepository.deleteById(id);
     }
 
-    private TagDto convertToDto(Tag tag) {
-        return new TagDto(tag.getId(), tag.getName(), tag.getDescription());
+    private void validateTagDto(TagDto dto) {
+        if (dto.name() == null || dto.name().trim().isEmpty()) {
+            throw new IllegalArgumentException("Tag name is required");
+        }
     }
 }
