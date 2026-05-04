@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TagService {
 
+    private static final String TAG_NOT_FOUND_WITH_ID = "Tag not found with id: ";
+    private static final String TAG_NOT_FOUND_WITH_NAME = "Tag not found with name: ";
+
     private final TagRepository tagRepository;
 
     public TagService(TagRepository tagRepository) {
@@ -20,12 +23,14 @@ public class TagService {
     private TagDto convertToDto(Tag tag) {
         return new TagDto(
             tag.getId(),
-            tag.getName()
+            tag.getName(),
+            tag.getDescription()
         );
     }
 
     private void updateTagFromDto(Tag tag, TagDto dto) {
         tag.setName(dto.name().trim());
+        tag.setDescription(dto.description() != null ? dto.description().trim() : null);
     }
 
     @Transactional(readOnly = true)
@@ -38,14 +43,16 @@ public class TagService {
     @Transactional(readOnly = true)
     public TagDto getTagById(Long id) {
         Tag tag = tagRepository.findById(id)
-            .orElseThrow(() -> new TagNotFoundException("Tag not found with id: " + id));
+            .orElseThrow(() -> new TagNotFoundException(TAG_NOT_FOUND_WITH_ID + id));
         return convertToDto(tag);
     }
 
     @Transactional(readOnly = true)
     public TagDto getTagByName(String name) {
-        Tag tag = tagRepository.findByNameIgnoreCase(name)
-            .orElseThrow(() -> new TagNotFoundException("Tag not found with name: " + name));
+        Tag tag = tagRepository.findAll().stream()
+            .filter(t -> t.getName() != null && t.getName().equalsIgnoreCase(name))
+            .findFirst()
+            .orElseThrow(() -> new TagNotFoundException(TAG_NOT_FOUND_WITH_NAME + name));
         return convertToDto(tag);
     }
 
@@ -64,7 +71,7 @@ public class TagService {
         validateTagDto(dto);
 
         Tag tag = tagRepository.findById(id)
-            .orElseThrow(() -> new TagNotFoundException("Tag not found with id: " + id));
+            .orElseThrow(() -> new TagNotFoundException(TAG_NOT_FOUND_WITH_ID + id));
 
         updateTagFromDto(tag, dto);
 
@@ -74,7 +81,7 @@ public class TagService {
     @Transactional
     public void deleteTag(Long id) {
         if (!tagRepository.existsById(id)) {
-            throw new TagNotFoundException("Tag not found with id: " + id);
+            throw new TagNotFoundException(TAG_NOT_FOUND_WITH_ID + id);
         }
         tagRepository.deleteById(id);
     }
