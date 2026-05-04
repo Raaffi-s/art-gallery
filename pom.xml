@@ -30,7 +30,7 @@
         <checkstyle.version>10.12.0</checkstyle.version>
         <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
         <jacoco.version>0.8.11</jacoco.version>
-        <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
+        <sonar-maven-plugin.version>5.5.0.6356</sonar-maven-plugin.version>
 
         <sonar.coverage.jacoco.xmlReportPaths>
             ${project.basedir}/target/site/jacoco/jacoco.xml
