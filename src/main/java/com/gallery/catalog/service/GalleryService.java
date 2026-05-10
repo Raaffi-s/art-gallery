@@ -56,7 +56,7 @@ public class GalleryService {
 
     @Transactional
     public GalleryDto createGallery(GalleryDto dto) {
-        validateGalleryDto(dto);
+        validateGalleryDto(dto, true);
 
         User owner = userRepository.findByUsername(dto.ownerName().trim())
             .orElseThrow(() -> new IllegalArgumentException(
@@ -64,8 +64,7 @@ public class GalleryService {
 
         Gallery gallery = new Gallery();
         gallery.setName(dto.name().trim());
-        gallery.setDescription(
-            dto.description() != null ? dto.description().trim() : null);
+        gallery.setDescription(dto.description() != null ? dto.description().trim() : null);
         gallery.setOwner(owner);
 
         Gallery saved = galleryRepository.save(gallery);
@@ -74,14 +73,13 @@ public class GalleryService {
 
     @Transactional
     public GalleryDto updateGallery(Long id, GalleryDto dto) {
-        validateGalleryDto(dto);
+        validateGalleryDto(dto, false);
 
         Gallery gallery = galleryRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Gallery not found: " + id));
 
         gallery.setName(dto.name().trim());
-        gallery.setDescription(
-            dto.description() != null ? dto.description().trim() : null);
+        gallery.setDescription(dto.description() != null ? dto.description().trim() : null);
 
         if (dto.ownerName() != null && !dto.ownerName().trim().isEmpty()) {
             User owner = userRepository.findByUsername(dto.ownerName().trim())
@@ -102,11 +100,12 @@ public class GalleryService {
         galleryRepository.deleteById(id);
     }
 
-    private void validateGalleryDto(GalleryDto dto) {
+    private void validateGalleryDto(GalleryDto dto, boolean requireOwnerName) {
         if (dto.name() == null || dto.name().trim().isEmpty()) {
             throw new IllegalArgumentException("Gallery name is required");
         }
-        if (dto.ownerName() == null || dto.ownerName().trim().isEmpty()) {
+
+        if (requireOwnerName && (dto.ownerName() == null || dto.ownerName().trim().isEmpty())) {
             throw new IllegalArgumentException("Owner name is required");
         }
     }
